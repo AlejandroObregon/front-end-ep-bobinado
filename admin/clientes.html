@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Sistema Taller Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="logo">
+            <i class="fas fa-tools"></i>
+            <span>Taller Manager</span>
+        </div>
+        
+        <div class="user-info">
+            <span>Bienvenido, <strong>Admin</strong></span>
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul class="nav-menu">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li class="active">
+                <a href="clientes.html">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
+            <li>
+                <a href="motores.html">
+                    <i class="fas fa-cogs"></i> Motores
+                </a>
+            </li>
+            <li>
+                <a href="ordenes.html">
+                    <i class="fas fa-clipboard-list"></i> Órdenes
+                </a>
+            </li>
+            <li>
+                <a href="inventario.html">
+                    <i class="fas fa-boxes"></i> Inventario
+                </a>
+            </li>
+            <li>
+                <a href="finanzas.html">
+                    <i class="fas fa-dollar-sign"></i> Finanzas
+                </a>
+            </li>
+            <li>
+                <a href="reportes.html">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+            </li>
+            <li>
+                <a href="configuracion.html">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-users"></i> Gestión de Clientes</h1>
+            <p class="text-muted">Administre la información de los clientes del taller</p>
+        </div>
+
+        <!-- Acciones de Página -->
+        <div class="page-actions">
+            <div>
+                <a href="clientes-detalle.html?action=new" class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Nuevo Cliente
+                </a>
+                <button class="btn btn-outline" id="exportBtn">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+            
+            <div class="search-filter-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar por nombre, cédula o teléfono..." 
+                           autocomplete="off">
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="active">Activos</button>
+                    <button class="filter-btn" data-filter="inactive">Inactivos</button>
+                    <button class="filter-btn" data-filter="vip">VIP</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Clientes -->
+        <div class="client-table">
+            <!-- Encabezado de Tabla -->
+            <div class="table-header">
+                <h3 style="margin: 0;">Lista de Clientes</h3>
+                <div class="table-actions">
+                    <button class="action-btn" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i> Actualizar
+                    </button>
+                    <button class="action-btn" id="columnsBtn">
+                        <i class="fas fa-columns"></i> Columnas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Encabezados de Columna -->
+            <div class="client-row" style="background: #f8f9fa; font-weight: 600; color: #2c3e50;">
+                <div></div>
+                <div>Cliente</div>
+                <div>Contacto</div>
+                <div>Motores</div>
+                <div>Registro</div>
+                <div>Estado</div>
+                <div>Acciones</div>
+            </div>
+
+            <!-- Lista de Clientes -->
+            <div id="clientsList">
+                <!-- Cliente 1 -->
+                <div class="client-row" data-status="active" data-category="regular">
+                    <div class="client-avatar">JP</div>
+                    <div class="client-info">
+                        <div class="client-name">Juan Pérez Rodríguez</div>
+                        <div class="client-id">ID: CLI-001 | Céd: 1-2345-6789</div>
+                    </div>
+                    <div class="client-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            juan.perez@email.com
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            2222-8888
+                        </div>
+                    </div>
+                    <div class="client-motors">
+                        <span class="motors-count">3 motores</span>
+                    </div>
+                    <div class="client-joined">
+                        15/01/2023
+                    </div>
+                    <div class="client-status">
+                        <span class="badge" style="background: #27ae60; color: white;">Activo</span>
+                    </div>
+                    <div class="client-actions">
+                        <div style="display: flex; gap: 5px;">
+                            <a href="clientes-detalle.html?id=1" class="btn-sm btn-view" title="Ver">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="clientes-detalle.html?id=1&action=edit" class="btn-sm btn-edit" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="motores-cliente.html?cliente=1" class="btn-sm btn-info" title="Motores">
+                                <i class="fas fa-motorcycle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cliente 2 -->
+                <div class="client-row" data-status="active" data-category="vip">
+                    <div class="client-avatar">ML</div>
+                    <div class="client-info">
+                        <div class="client-name">María López Sánchez</div>
+                        <div class="client-id">ID: CLI-002 | Céd: 2-3456-7890</div>
+                    </div>
+                    <div class="client-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            maria.lopez@empresa.com
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            8888-9999
+                        </div>
+                    </div>
+                    <div class="client-motors">
+                        <span class="motors-count">5 motores</span>
+                    </div>
+                    <div class="client-joined">
+                        22/03/2023
+                    </div>
+                    <div class="client-status">
+                        <span class="badge" style="background: #9b59b6; color: white;">VIP</span>
+                    </div>
+                    <div class="client-actions">
+                        <div style="display: flex; gap: 5px;">
+                            <a href="clientes-detalle.html?id=2" class="btn-sm btn-view" title="Ver">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="clientes-detalle.html?id=2&action=edit" class="btn-sm btn-edit" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="motores-cliente.html?cliente=2" class="btn-sm btn-info" title="Motores">
+                                <i class="fas fa-motorcycle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cliente 3 -->
+                <div class="client-row" data-status="active" data-category="regular">
+                    <div class="client-avatar">CR</div>
+                    <div class="client-info">
+                        <div class="client-name">Carlos Rodríguez</div>
+                        <div class="client-id">ID: CLI-003 | Céd: 3-4567-8901</div>
+                    </div>
+                    <div class="client-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            carlos@taller.com
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            7777-5555
+                        </div>
+                    </div>
+                    <div class="client-motors">
+                        <span class="motors-count">2 motores</span>
+                    </div>
+                    <div class="client-joined">
+                        10/05/2023
+                    </div>
+                    <div class="client-status">
+                        <span class="badge" style="background: #27ae60; color: white;">Activo</span>
+                    </div>
+                    <div class="client-actions">
+                        <div style="display: flex; gap: 5px;">
+                            <a href="clientes-detalle.html?id=3" class="btn-sm btn-view" title="Ver">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="clientes-detalle.html?id=3&action=edit" class="btn-sm btn-edit" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="motores-cliente.html?cliente=3" class="btn-sm btn-info" title="Motores">
+                                <i class="fas fa-motorcycle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cliente 4 -->
+                <div class="client-row" data-status="inactive" data-category="regular">
+                    <div class="client-avatar">AM</div>
+                    <div class="client-info">
+                        <div class="client-name">Ana Martínez</div>
+                        <div class="client-id">ID: CLI-004 | Céd: 4-5678-9012</div>
+                    </div>
+                    <div class="client-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            ana.m@negocio.com
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            6666-4444
+                        </div>
+                    </div>
+                    <div class="client-motors">
+                        <span class="motors-count">1 motor</span>
+                    </div>
+                    <div class="client-joined">
+                        18/08/2023
+                    </div>
+                    <div class="client-status">
+                        <span class="badge" style="background: #95a5a6; color: white;">Inactivo</span>
+                    </div>
+                    <div class="client-actions">
+                        <div style="display: flex; gap: 5px;">
+                            <a href="clientes-detalle.html?id=4" class="btn-sm btn-view" title="Ver">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="clientes-detalle.html?id=4&action=edit" class="btn-sm btn-edit" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="motores-cliente.html?cliente=4" class="btn-sm btn-info" title="Motores">
+                                <i class="fas fa-motorcycle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cliente 5 -->
+                <div class="client-row" data-status="active" data-category="vip">
+                    <div class="client-avatar">PG</div>
+                    <div class="client-info">
+                        <div class="client-name">Pedro González</div>
+                        <div class="client-id">ID: CLI-005 | Céd: 5-6789-0123</div>
+                    </div>
+                    <div class="client-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            pedro.g@industrias.com
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            5555-3333
+                        </div>
+                    </div>
+                    <div class="client-motors">
+                        <span class="motors-count">8 motores</span>
+                    </div>
+                    <div class="client-joined">
+                        05/11/2023
+                    </div>
+                    <div class="client-status">
+                        <span class="badge" style="background: #9b59b6; color: white;">VIP</span>
+                    </div>
+                    <div class="client-actions">
+                        <div style="display: flex; gap: 5px;">
+                            <a href="clientes-detalle.html?id=5" class="btn-sm btn-view" title="Ver">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="clientes-detalle.html?id=5&action=edit" class="btn-sm btn-edit" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="motores-cliente.html?cliente=5" class="btn-sm btn-info" title="Motores">
+                                <i class="fas fa-motorcycle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estado vacío -->
+            <div id="emptyState" style="display: none; padding: 60px 20px; text-align: center;">
+                <i class="fas fa-users" style="font-size: 48px; color: #ddd; margin-bottom: 20px;"></i>
+                <h3 style="color: #95a5a6; margin-bottom: 10px;">No hay clientes registrados</h3>
+                <p style="color: #7f8c8d; margin-bottom: 30px;">Comience agregando su primer cliente</p>
+                <a href="clientes-detalle.html?action=new" class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Agregar Primer Cliente
+                </a>
+            </div>
+
+            <!-- Paginación -->
+            <div class="pagination">
+                <div class="pagination-info">
+                    Mostrando <span id="startRow">1</span>-<span id="endRow">5</span> de <span id="totalRows">128</span> clientes
+                </div>
+                
+                <div class="pagination-controls">
+                    <button class="page-btn disabled" id="firstPage">
+                        <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <button class="page-btn disabled" id="prevPage">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">4</button>
+                    <button class="page-btn">5</button>
+                    
+                    <button class="page-btn" id="nextPage">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="page-btn" id="lastPage">
+                        <i class="fas fa-angle-double-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="admin-footer">
+        <p>Sistema de Gestión de Taller © 2024 | Módulo: Clientes</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+    
+    <script>
+        // Script específico para lista de clientes
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Página de clientes cargada');
+            
+            // Variables
+            let currentFilter = 'all';
+            let currentSearch = '';
+            let currentPage = 1;
+            const rowsPerPage = 5;
+            let allClients = [];
+            
+            // Inicializar
+            function initClientes() {
+                // Obtener todos los clientes de la lista
+                allClients = Array.from(document.querySelectorAll('.client-row[data-status]'));
+                
+                // Configurar búsqueda
+                setupSearch();
+                
+                // Configurar filtros
+                setupFilters();
+                
+                // Configurar paginación
+                setupPagination();
+                
+                // Configurar botones de acción
+                setupActionButtons();
+                
+                // Mostrar contador inicial
+                updateRowCount();
+            }
+            
+            // Configurar búsqueda
+            function setupSearch() {
+                const searchInput = document.getElementById('searchInput');
+                
+                searchInput.addEventListener('input', function() {
+                    currentSearch = this.value.toLowerCase().trim();
+                    filterAndDisplayClients();
+                });
+                
+                // Limpiar búsqueda
+                document.getElementById('refreshBtn').addEventListener('click', function() {
+                    searchInput.value = '';
+                    currentSearch = '';
+                    filterAndDisplayClients();
+                    showNotification('Lista actualizada', 'success');
+                });
+            }
+            
+            // Configurar filtros
+            function setupFilters() {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remover active de todos
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        
+                        // Activar este
+                        this.classList.add('active');
+                        currentFilter = this.getAttribute('data-filter');
+                        
+                        filterAndDisplayClients();
+                    });
+                });
+            }
+            
+            // Configurar paginación
+            function setupPagination() {
+                document.getElementById('nextPage').addEventListener('click', function() {
+                    if (!this.classList.contains('disabled')) {
+                        currentPage++;
+                        filterAndDisplayClients();
+                    }
+                });
+                
+                document.getElementById('prevPage').addEventListener('click', function() {
+                    if (!this.classList.contains('disabled') && currentPage > 1) {
+                        currentPage--;
+                        filterAndDisplayClients();
+                    }
+                });
+                
+                document.getElementById('firstPage').addEventListener('click', function() {
+                    if (!this.classList.contains('disabled')) {
+                        currentPage = 1;
+                        filterAndDisplayClients();
+                    }
+                });
+                
+                document.getElementById('lastPage').addEventListener('click', function() {
+                    if (!this.classList.contains('disabled')) {
+                        // Calcular última página
+                        const filteredClients = getFilteredClients();
+                        const totalPages = Math.ceil(filteredClients.length / rowsPerPage);
+                        currentPage = totalPages;
+                        filterAndDisplayClients();
+                    }
+                });
+                
+                // Botones de página numérica
+                document.querySelectorAll('.page-btn:not(.active):not(#firstPage):not(#prevPage):not(#nextPage):not(#lastPage)').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        if (!this.classList.contains('active')) {
+                            currentPage = parseInt(this.textContent);
+                            filterAndDisplayClients();
+                        }
+                    });
+                });
+            }
+            
+            // Configurar botones de acción
+            function setupActionButtons() {
+                // Botón exportar
+                document.getElementById('exportBtn').addEventListener('click', function() {
+                    const filteredClients = getFilteredClients();
+                    const count = filteredClients.length;
+                    
+                    showNotification(`Exportando ${count} clientes a Excel...`, 'info');
+                    
+                    // Simular exportación
+                    setTimeout(() => {
+                        showNotification(`Archivo clientes_${new Date().toISOString().slice(0,10)}.xlsx descargado`, 'success');
+                    }, 1500);
+                });
+                
+                // Botón columnas
+                document.getElementById('columnsBtn').addEventListener('click', function() {
+                    showNotification('En una implementación real, aquí aparecería un selector de columnas visibles', 'info');
+                });
+                
+                // Botones eliminar en cada fila
+                document.querySelectorAll('.btn-sm.btn-delete').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const clientName = this.closest('.client-row').querySelector('.client-name').textContent;
+                        
+                        if (confirm(`¿Está seguro de eliminar al cliente "${clientName}"?`)) {
+                            // Simular eliminación
+                            const row = this.closest('.client-row');
+                            row.style.opacity = '0.5';
+                            
+                            setTimeout(() => {
+                                row.remove();
+                                filterAndDisplayClients();
+                                showNotification('Cliente eliminado', 'success');
+                            }, 500);
+                        }
+                    });
+                });
+            }
+            
+            // Obtener clientes filtrados
+            function getFilteredClients() {
+                return allClients.filter(client => {
+                    // Aplicar filtro
+                    if (currentFilter !== 'all') {
+                        const status = client.getAttribute('data-status');
+                        const category = client.getAttribute('data-category');
+                        
+                        if (currentFilter === 'active' && status !== 'active') return false;
+                        if (currentFilter === 'inactive' && status !== 'inactive') return false;
+                        if (currentFilter === 'vip' && category !== 'vip') return false;
+                    }
+                    
+                    // Aplicar búsqueda
+                    if (currentSearch) {
+                        const clientText = client.textContent.toLowerCase();
+                        if (!clientText.includes(currentSearch)) return false;
+                    }
+                    
+                    return true;
+                });
+            }
+            
+            // Filtrar y mostrar clientes
+            function filterAndDisplayClients() {
+                const filteredClients = getFilteredClients();
+                const totalClients = filteredClients.length;
+                
+                // Mostrar/ocultar estado vacío
+                const emptyState = document.getElementById('emptyState');
+                if (totalClients === 0) {
+                    emptyState.style.display = 'block';
+                    document.getElementById('clientsList').style.display = 'none';
+                    document.querySelector('.pagination').style.display = 'none';
+                    return;
+                } else {
+                    emptyState.style.display = 'none';
+                    document.getElementById('clientsList').style.display = 'block';
+                    document.querySelector('.pagination').style.display = 'flex';
+                }
+                
+                // Calcular paginación
+                const totalPages = Math.ceil(totalClients / rowsPerPage);
+                currentPage = Math.min(currentPage, totalPages);
+                if (currentPage < 1) currentPage = 1;
+                
+                const startIndex = (currentPage - 1) * rowsPerPage;
+                const endIndex = Math.min(startIndex + rowsPerPage, totalClients);
+                
+                // Ocultar todos los clientes primero
+                allClients.forEach(client => {
+                    client.style.display = 'none';
+                });
+                
+                // Mostrar clientes de la página actual
+                for (let i = startIndex; i < endIndex; i++) {
+                    filteredClients[i].style.display = 'grid';
+                }
+                
+                // Actualizar contadores
+                updateRowCount(startIndex + 1, endIndex, totalClients);
+                
+                // Actualizar controles de paginación
+                updatePaginationControls(totalPages);
+                
+                // Actualizar contador en título
+                updateClientCount(totalClients);
+            }
+            
+            // Actualizar contador de filas
+            function updateRowCount(start = 1, end = 5, total = 128) {
+                document.getElementById('startRow').textContent = start;
+                document.getElementById('endRow').textContent = end;
+                document.getElementById('totalRows').textContent = total;
+            }
+            
+            // Actualizar controles de paginación
+            function updatePaginationControls(totalPages) {
+                const firstBtn = document.getElementById('firstPage');
+                const prevBtn = document.getElementById('prevPage');
+                const nextBtn = document.getElementById('nextPage');
+                const lastBtn = document.getElementById('lastPage');
+                
+                // Habilitar/deshabilitar botones
+                firstBtn.classList.toggle('disabled', currentPage === 1);
+                prevBtn.classList.toggle('disabled', currentPage === 1);
+                nextBtn.classList.toggle('disabled', currentPage === totalPages);
+                lastBtn.classList.toggle('disabled', currentPage === totalPages);
+                
+                // Actualizar números de página
+                updatePageNumbers(totalPages);
+            }
+            
+            // Actualizar números de página
+            function updatePageNumbers(totalPages) {
+                const pageControls = document.querySelector('.pagination-controls');
+                const numberBtns = pageControls.querySelectorAll('.page-btn:not(#firstPage):not(#prevPage):not(#nextPage):not(#lastPage)');
+                
+                // Mostrar máximo 5 números de página
+                let startPage = Math.max(1, currentPage - 2);
+                let endPage = Math.min(totalPages, startPage + 4);
+                
+                if (endPage - startPage < 4) {
+                    startPage = Math.max(1, endPage - 4);
+                }
+                
+                // Actualizar botones
+                numberBtns.forEach((btn, index) => {
+                    const pageNum = startPage + index;
+                    
+                    if (pageNum <= endPage) {
+                        btn.textContent = pageNum;
+                        btn.style.display = 'flex';
+                        btn.classList.toggle('active', pageNum === currentPage);
+                    } else {
+                        btn.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Actualizar contador en título
+            function updateClientCount(count) {
+                const header = document.querySelector('.page-header h1');
+                const originalText = header.textContent.replace(/\(\d+\)/, '');
+                header.textContent = `${originalText} (${count})`;
+            }
+            
+            // Inicializar
+            initClientes();
+            
+            // Simular carga de datos
+            setTimeout(() => {
+                console.log('Datos de clientes cargados');
+                showNotification(`${allClients.length} clientes cargados`, 'success');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

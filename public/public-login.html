@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Taller Eléctrico Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="public-page">
+    <header class="public-header">
+        <div class="container">
+            <nav class="public-nav">
+                <a href="../public-index.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Taller Eléctrico</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../public-index.html">Inicio</a></li>
+                    <li><a href="public-servicios.html">Servicios</a></li>
+                    <li><a href="public-contacto.html">Contacto</a></li>
+                    <li><a href="public-blog.html">Blog</a></li>
+                    <li><a href="public-registro.html">Registro</a></li>
+                    <li><a href="public-login.html" class="active btn btn-outline">Ingresar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="public-main">
+        <div class="container">
+            <div class="login-public-container">
+                <div class="login-public-card">
+                    <div class="login-public-header">
+                        <h1><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</h1>
+                        <p>Ingrese a su cuenta para gestionar sus motores y reparaciones</p>
+                    </div>
+
+                    <form id="loginPublicForm" class="public-form">
+                        <div class="form-group">
+                            <label for="loginEmail">Correo Electrónico *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="loginEmail" name="email" required 
+                                       placeholder="ejemplo@correo.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="loginPassword" name="password" required 
+                                       placeholder="••••••••">
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="form-options">
+                                <label class="remember-me">
+                                    <input type="checkbox" name="remember">
+                                    <span>Recordar sesión</span>
+                                </label>
+                                <a href="../recuperacion-contrasena.html" class="forgot-password">
+                                    ¿Olvidó su contraseña?
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                <i class="fas fa-sign-in-alt"></i> Ingresar a Mi Cuenta
+                            </button>
+                        </div>
+
+                        <div class="alternative-login">
+                            <div class="divider">
+                                <span>o continuar con</span>
+                            </div>
+                            
+                            <div class="social-login">
+                                <button type="button" class="btn-social btn-google">
+                                    <i class="fab fa-google"></i> Google
+                                </button>
+                                <button type="button" class="btn-social btn-facebook">
+                                    <i class="fab fa-facebook-f"></i> Facebook
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="login-public-footer">
+                            <p>¿No tiene una cuenta? <a href="public-registro.html" class="text-link">Regístrese aquí</a></p>
+                            <p>¿Es personal del taller? <a href="../index.html" class="text-link">Ingrese al sistema administrativo</a></p>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="login-benefits">
+                    <h3><i class="fas fa-star"></i> Beneficios de su cuenta</h3>
+                    <ul class="benefits-list">
+                        <li>
+                            <i class="fas fa-clipboard-list text-primary"></i>
+                            <div>
+                                <strong>Seguimiento en tiempo real</strong>
+                                <p>Vea el estado de sus reparaciones</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-history text-success"></i>
+                            <div>
+                                <strong>Historial completo</strong>
+                                <p>Acceda a todas sus reparaciones anteriores</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-motorcycle text-warning"></i>
+                            <div>
+                                <strong>Gestión de motores</strong>
+                                <p>Administre todos sus motores en un solo lugar</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-bell text-danger"></i>
+                            <div>
+                                <strong>Notificaciones automáticas</strong>
+                                <p>Reciba alertas sobre sus servicios</p>
+                            </div>
+                        </li>
+                    </ul>
+                
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="public-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-tools"></i> Taller Eléctrico Mecánico</h4>
+                    <p>Especialistas en reparación y mantenimiento de motores eléctricos desde 1995.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> San José, Costa Rica</p>
+                    <p><i class="fas fa-phone"></i> (506) 2222-5555</p>
+                    <p><i class="fas fa-envelope"></i> info@tallerelectrico.com</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="public-servicios.html">Servicios</a></li>
+                        <li><a href="public-contacto.html">Contacto</a></li>
+                        <li><a href="public-blog.html">Blog de Mantenimiento</a></li>
+                        <li><a href="public-registro.html">Registrarse</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Taller Eléctrico Mecánico. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/public.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Cliente - Taller Eléctrico Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="public-page">
+    <header class="public-header">
+        <div class="container">
+            <nav class="public-nav">
+                <a href="../public-index.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Taller Eléctrico</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../public-index.html">Inicio</a></li>
+                    <li><a href="public-servicios.html">Servicios</a></li>
+                    <li><a href="public-contacto.html">Contacto</a></li>
+                    <li><a href="public-blog.html">Blog</a></li>
+                    <li><a href="public-registro.html" class="active">Registro</a></li>
+                    <li><a href="public-login.html" class="btn btn-outline">Ingresar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="public-main">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1><i class="fas fa-user-plus"></i> Registro de Cliente</h1>
+                    <p>Complete sus datos para crear una cuenta y gestionar sus motores</p>
+                </div>
+
+                <form id="registroForm" class="public-form">
+                    <fieldset class="form-section">
+                        <legend><i class="fas fa-id-card"></i> Información Personal</legend>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre Completo *</label>
+                                <input type="text" id="nombre" name="nombre" required 
+                                       placeholder="Ej: Juan Pérez Rodríguez">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cedula">Cédula / Identificación *</label>
+                                <input type="text" id="cedula" name="cedula" required 
+                                       placeholder="Ej: 1-2345-6789">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="genero">Género</label>
+                                <select id="genero" name="genero">
+                                    <option value="">Seleccionar</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                    <option value="O">Otro</option>
+                                    <option value="N">Prefiero no decirlo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend><i class="fas fa-address-book"></i> Información de Contacto</legend>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico *</label>
+                                <input type="email" id="email" name="email" required 
+                                       placeholder="ejemplo@correo.com">
+                                <small class="form-text">Este será su usuario para ingresar</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telefono">Teléfono *</label>
+                                <input type="tel" id="telefono" name="telefono" required 
+                                       placeholder="Ej: 8888-8888">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="direccion">Dirección *</label>
+                                <input type="text" id="direccion" name="direccion" required 
+                                       placeholder="Dirección exacta">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="provincia">Provincia *</label>
+                                <select id="provincia" name="provincia" required>
+                                    <option value="">Seleccionar provincia</option>
+                                    <option value="san_jose">San José</option>
+                                    <option value="alajuela">Alajuela</option>
+                                    <option value="cartago">Cartago</option>
+                                    <option value="heredia">Heredia</option>
+                                    <option value="guanacaste">Guanacaste</option>
+                                    <option value="puntarenas">Puntarenas</option>
+                                    <option value="limon">Limón</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend><i class="fas fa-lock"></i> Seguridad</legend>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">Contraseña *</label>
+                                <input type="password" id="password" name="password" required 
+                                       placeholder="Mínimo 8 caracteres">
+                                <div class="password-strength">
+                                    <span class="strength-bar"></span>
+                                    <span class="strength-bar"></span>
+                                    <span class="strength-bar"></span>
+                                    <span class="strength-text">Seguridad: baja</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirm_password">Confirmar Contraseña *</label>
+                                <input type="password" id="confirm_password" name="confirm_password" required>
+                                <div id="password-match" class="form-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" name="terminos" class="login-checkbox" required>
+                                Acepto los <a href="#" class="text-link">Términos y Condiciones</a> y la 
+                                <a href="#" class="text-link">Política de Privacidad</a> *
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" name="newsletter" class="login-checkbox">
+                                Deseo recibir notificaciones sobre el estado de mis reparaciones y ofertas especiales
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-check-circle"></i> Crear Cuenta
+                        </button>
+                        
+                        <a href="../public-index.html" class="btn btn-outline">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                    </div>
+
+                    <div class="form-footer">
+                        <p>¿Ya tiene una cuenta? <a href="public-login.html" class="text-link">Ingrese aquí</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="public-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-tools"></i> Taller Eléctrico Mecánico</h4>
+                    <p>Especialistas en reparación y mantenimiento de motores eléctricos desde 1995.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> San José, Costa Rica</p>
+                    <p><i class="fas fa-phone"></i> (506) 2222-5555</p>
+                    <p><i class="fas fa-envelope"></i> info@tallerelectrico.com</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Horario</h4>
+                    <p>Lunes a Viernes: 7:00 AM - 5:00 PM</p>
+                    <p>Sábados: 7:00 AM - 12:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Taller Eléctrico Mecánico. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/public.js"></script>
+</body>
+</html>

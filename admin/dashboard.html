@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema Taller Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="logo">
+            <i class="fas fa-tools"></i>
+            <span>Taller Manager</span>
+        </div>
+        
+        <div class="user-info">
+            <span>Bienvenido, <strong>Admin</strong></span>
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul class="nav-menu">
+            <li class="active">
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="clientes.html">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
+            <li>
+                <a href="motores.html">
+                    <i class="fas fa-cogs"></i> Motores
+                </a>
+            </li>
+            <li>
+                <a href="ordenes.html">
+                    <i class="fas fa-clipboard-list"></i> Órdenes
+                </a>
+            </li>
+            <li>
+                <a href="inventario.html">
+                    <i class="fas fa-boxes"></i> Inventario
+                </a>
+            </li>
+            <li>
+                <a href="finanzas.html">
+                    <i class="fas fa-dollar-sign"></i> Finanzas
+                </a>
+            </li>
+            <li>
+                <a href="reportes.html">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+            </li>
+            <li>
+                <a href="configuracion.html">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="dashboard-header">
+            <div>
+                <h1><i class="fas fa-tachometer-alt"></i> Panel de Control</h1>
+                <p class="text-muted">Resumen general del taller - Hoy: <span id="currentDate">15 Enero, 2024</span></p>
+            </div>
+            
+            <div class="date-filter">
+                <select id="periodFilter">
+                    <option value="today">Hoy</option>
+                    <option value="week" selected>Esta semana</option>
+                    <option value="month">Este mes</option>
+                    <option value="quarter">Este trimestre</option>
+                    <option value="year">Este año</option>
+                </select>
+                
+                <input type="date" id="customDate" style="padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
+            </div>
+        </div>
+
+        <!-- Estadísticas Principales -->
+        <div class="stats-summary">
+            <div class="stat-item">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-value">₡ 1,245,000</div>
+                    <div class="stat-label">Ingresos del Mes</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> 15% vs mes anterior
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #27ae60, #219653);">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-value">28</div>
+                    <div class="stat-label">Órdenes Completadas</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> 8% vs semana anterior
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Órdenes en Proceso</div>
+                    <div class="stat-change negative">
+                        <i class="fas fa-arrow-down"></i> 3% vs semana anterior
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Alertas de Stock</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-down"></i> 2 resueltas
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Principal -->
+        <div class="dashboard-grid">
+            <!-- Gráfico y Órdenes -->
+            <div>
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-line"></i> Ingresos Mensuales</h3>
+                        <select style="padding: 5px 10px; border-radius: 4px; border: 1px solid #ddd;">
+                            <option>2024</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Gráfico simulado -->
+                    <div class="chart-placeholder" style="height: 300px; display: flex; align-items: flex-end; gap: 30px; padding: 20px 0;">
+                        <div style="text-align: center; flex: 1;">
+                            <div style="height: 250px; width: 100%; position: relative;">
+                                <div style="position: absolute; bottom: 0; left: 10%; right: 10%; background: linear-gradient(to top, #3498db, #2980b9); border-radius: 5px 5px 0 0;"></div>
+                                <div style="position: absolute; bottom: 60%; left: 10%; right: 10%; background: linear-gradient(to top, #27ae60, #219653); border-radius: 5px 5px 0 0;"></div>
+                            </div>
+                            <div style="margin-top: 10px; font-weight: 600; color: #2c3e50;">Enero</div>
+                            <div style="font-size: 12px; color: #7f8c8d;">₡ 1.2M</div>
+                        </div>
+                        
+                        <div style="text-align: center; flex: 1;">
+                            <div style="height: 200px; width: 100%; position: relative;">
+                                <div style="position: absolute; bottom: 0; left: 10%; right: 10%; background: linear-gradient(to top, #3498db, #2980b9); border-radius: 5px 5px 0 0;"></div>
+                                <div style="position: absolute; bottom: 50%; left: 10%; right: 10%; background: linear-gradient(to top, #27ae60, #219653); border-radius: 5px 5px 0 0;"></div>
+                            </div>
+                            <div style="margin-top: 10px; font-weight: 600; color: #2c3e50;">Feb</div>
+                            <div style="font-size: 12px; color: #7f8c8d;">₡ 980K</div>
+                        </div>
+                        
+                        <div style="text-align: center; flex: 1;">
+                            <div style="height: 180px; width: 100%; position: relative;">
+                                <div style="position: absolute; bottom: 0; left: 10%; right: 10%; background: linear-gradient(to top, #3498db, #2980b9); border-radius: 5px 5px 0 0;"></div>
+                                <div style="position: absolute; bottom: 45%; left: 10%; right: 10%; background: linear-gradient(to top, #27ae60, #219653); border-radius: 5px 5px 0 0;"></div>
+                            </div>
+                            <div style="margin-top: 10px; font-weight: 600; color: #2c3e50;">Mar</div>
+                            <div style="font-size: 12px; color: #7f8c8d;">₡ 850K</div>
+                        </div>
+                        
+                        <div style="text-align: center; flex: 1;">
+                            <div style="height: 300px; width: 100%; position: relative;">
+                                <div style="position: absolute; bottom: 0; left: 10%; right: 10%; background: linear-gradient(to top, #3498db, #2980b9); border-radius: 5px 5px 0 0;"></div>
+                                <div style="position: absolute; bottom: 70%; left: 10%; right: 10%; background: linear-gradient(to top, #27ae60, #219653); border-radius: 5px 5px 0 0;"></div>
+                            </div>
+                            <div style="margin-top: 10px; font-weight: 600; color: #2c3e50;">Abr</div>
+                            <div style="font-size: 12px; color: #7f8c8d;">₡ 1.5M</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: center; gap: 30px; margin-top: 20px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 15px; height: 15px; background: #3498db; border-radius: 3px;"></div>
+                            <span style="font-size: 14px; color: #7f8c8d;">Reparaciones</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 15px; height: 15px; background: #27ae60; border-radius: 3px;"></div>
+                            <span style="font-size: 14px; color: #7f8c8d;">Ventas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Órdenes Recientes -->
+                <div class="chart-container" style="margin-top: 30px;">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-history"></i> Órdenes Recientes</h3>
+                        <a href="ordenes.html" class="btn-sm btn-primary">Ver todas</a>
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Orden #</th>
+                                <th>Cliente</th>
+                                <th>Motor</th>
+                                <th>Estado</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="ordenes-detalle.html?id=1024" class="text-link">ORD-1024</a></td>
+                                <td>Juan Pérez</td>
+                                <td>SIEMENS 5HP</td>
+                                <td><span class="badge bg-success">Completado</span></td>
+                                <td>₡ 125,000</td>
+                            </tr>
+                            <tr>
+                                <td><a href="ordenes-detalle.html?id=1025" class="text-link">ORD-1025</a></td>
+                                <td>María López</td>
+                                <td>WEG 10HP</td>
+                                <td><span class="badge bg-warning">En reparación</span></td>
+                                <td>₡ 85,000</td>
+                            </tr>
+                            <tr>
+                                <td><a href="ordenes-detalle.html?id=1026" class="text-link">ORD-1026</a></td>
+                                <td>Carlos R.</td>
+                                <td>ABB 7.5HP</td>
+                                <td><span class="badge bg-info">Diagnóstico</span></td>
+                                <td>₡ 45,000</td>
+                            </tr>
+                            <tr>
+                                <td><a href="ordenes-detalle.html?id=1027" class="text-link">ORD-1027</a></td>
+                                <td>Industrias ABC</td>
+                                <td>TOSHIBA 20HP</td>
+                                <td><span class="badge bg-danger">Espera repuestos</span></td>
+                                <td>₡ 320,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Actividad Reciente y Estadísticas Rápidas -->
+            <div>
+                <!-- Actividad Reciente -->
+                <div class="recent-activity">
+                    <h3><i class="fas fa-bell"></i> Actividad Reciente</h3>
+                    
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: #3498db;">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Nuevo cliente registrado</div>
+                                <p>Pedro Gómez se registró en el sistema</p>
+                                <div class="activity-time">Hace 15 minutos</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: #27ae60;">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Orden completada</div>
+                                <p>ORD-1024 fue marcada como completada</p>
+                                <div class="activity-time">Hace 2 horas</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: #e74c3c;">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Alerta de stock bajo</div>
+                                <p>Rodamientos 6205-ZZ bajo nivel mínimo</p>
+                                <div class="activity-time">Hace 4 horas</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: #f39c12;">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Cotización generada</div>
+                                <p>Nueva cotización #COT-045 para María L.</p>
+                                <div class="activity-time">Hace 6 horas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estadísticas Rápidas -->
+                <div class="recent-activity" style="margin-top: 30px;">
+                    <h3><i class="fas fa-chart-pie"></i> Estadísticas Rápidas</h3>
+                    
+                    <div class="quick-stats" style="margin-top: 20px;">
+                        <div class="quick-stat">
+                            <i class="fas fa-users text-primary"></i>
+                            <div class="number">128</div>
+                            <div class="label">Clientes Activos</div>
+                        </div>
+                        
+                        <div class="quick-stat">
+                            <i class="fas fa-cogs text-success"></i>
+                            <div class="number">156</div>
+                            <div class="label">Motores Registrados</div>
+                        </div>
+                        
+                        <div class="quick-stat">
+                            <i class="fas fa-tools text-warning"></i>
+                            <div class="number">84</div>
+                            <div class="label">Técnicos Activos</div>
+                        </div>
+                        
+                        <div class="quick-stat">
+                            <i class="fas fa-star text-info"></i>
+                            <div class="number">4.8</div>
+                            <div class="label">Rating Promedio</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acciones Rápidas -->
+                <div class="recent-activity" style="margin-top: 30px;">
+                    <h3><i class="fas fa-bolt"></i> Acciones Rápidas</h3>
+                    
+                    <div style="margin-top: 20px; display: grid; gap: 10px;">
+                        <a href="clientes.html?action=new" class="btn btn-primary btn-block">
+                            <i class="fas fa-user-plus"></i> Nuevo Cliente
+                        </a>
+                        
+                        <a href="ordenes.html?action=new" class="btn btn-success btn-block">
+                            <i class="fas fa-plus-circle"></i> Nueva Orden
+                        </a>
+                        
+                        <a href="finanzas.html?action=new" class="btn btn-warning btn-block">
+                            <i class="fas fa-file-invoice-dollar"></i> Generar Cotización
+                        </a>
+                        
+                        <a href="reportes.html" class="btn btn-info btn-block">
+                            <i class="fas fa-chart-bar"></i> Ver Reportes
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="admin-footer">
+        <p>Sistema de Gestión de Taller © 2024 | Versión 1.0 | <span id="currentDateTime"></span></p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+    
+    <script>
+        // Script específico para dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Dashboard cargado');
+            
+            // Actualizar fecha actual
+            function updateCurrentDate() {
+                const now = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('currentDate').textContent = now.toLocaleDateString('es-ES', options);
+                
+                // Fecha y hora en footer
+                const dateTimeStr = now.toLocaleDateString('es-ES') + ' ' + now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+                document.getElementById('currentDateTime').textContent = dateTimeStr;
+            }
+            
+            // Actualizar cada minuto
+            updateCurrentDate();
+            setInterval(updateCurrentDate, 60000);
+            
+            // Filtro de período
+            document.getElementById('periodFilter').addEventListener('change', function() {
+                const period = this.value;
+                console.log('Período seleccionado:', period);
+                
+                // Aquí iría la lógica para cargar datos del período
+                // Por ahora solo mostramos un mensaje
+                showNotification(`Mostrando datos del período: ${this.options[this.selectedIndex].text}`, 'info');
+            });
+            
+            // Fecha personalizada
+            document.getElementById('customDate').addEventListener('change', function() {
+                if (this.value) {
+                    console.log('Fecha personalizada:', this.value);
+                    showNotification(`Mostrando datos para: ${this.value}`, 'info');
+                }
+            });
+            
+            // Simular carga de datos
+            setTimeout(() => {
+                // Simular datos cargados
+                console.log('Datos del dashboard cargados');
+                
+                // Animar números de estadísticas
+                animateCounter('.stat-value');
+            }, 1000);
+            
+            // Función para animar contadores
+            function animateCounter(selector) {
+                document.querySelectorAll(selector).forEach(element => {
+                    const text = element.textContent;
+                    const isCurrency = text.includes('₡');
+                    const isDecimal = text.includes('.');
+                    
+                    // Extraer número
+                    let numberStr = text.replace(/[^\d.]/g, '');
+                    const target = parseFloat(numberStr);
+                    
+                    if (!isNaN(target)) {
+                        element.textContent = isCurrency ? '₡ 0' : '0';
+                        
+                        let current = 0;
+                        const increment = target / 100;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                            }
+                            
+                            if (isCurrency) {
+                                element.textContent = `₡ ${Math.floor(current).toLocaleString('es-CR')}`;
+                            } else if (isDecimal) {
+                                element.textContent = current.toFixed(1);
+                            } else {
+                                element.textContent = Math.floor(current);
+                            }
+                        }, 20);
+                    }
+                });
+            }
+            
+            // Notificación de bienvenida
+            if (!sessionStorage.getItem('dashboardWelcome')) {
+                setTimeout(() => {
+                    showNotification('¡Bienvenido al Panel de Control! Use las acciones rápidas para comenzar.', 'info');
+                    sessionStorage.setItem('dashboardWelcome', 'true');
+                }, 2000);
+            }
+            
+            // Actualizar datos periódicamente (cada 30 segundos)
+            setInterval(() => {
+                console.log('Actualizando datos del dashboard...');
+                // Aquí iría la lógica para actualizar datos en tiempo real
+            }, 30000);
+        });
+    </script>
+</body>
+</html>
