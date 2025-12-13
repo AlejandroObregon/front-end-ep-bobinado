@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - Área del Cliente</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/cliente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="public-page">
+    <!-- Header del Cliente -->
+    <header class="public-header">
+        <div class="container">
+            <nav class="public-nav">
+                <a href="../cliente-dashboard.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Mi Taller</span>
+                </a>
+                <div class="user-welcome">
+                    <!-- Será llenado por cliente.js -->
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../cliente-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="cliente-mis-motores.html"><i class="fas fa-motorcycle"></i> Mis Motores</a></li>
+                    <li><a href="cliente-mis-ordenes.html"><i class="fas fa-clipboard-list"></i> Mis Órdenes</a></li>
+                    <li><a href="cliente-historial.html"><i class="fas fa-history"></i> Historial</a></li>
+                    <li><a href="cliente-perfil.html" class="active"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li>
+                        <a href="../public-index.html" class="btn btn-outline">
+                            <i class="fas fa-sign-out-alt"></i> Salir
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="public-main">
+        <div class="container">
+            <!-- Encabezado del perfil -->
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h1 id="profileName">Juan Pérez</h1>
+                    <p><i class="fas fa-envelope"></i> juan@email.com</p>
+                    <p><i class="fas fa-phone"></i> 2222-5555</p>
+                    <p><i class="fas fa-building"></i> Industrias Pérez S.A.</p>
+                    
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <span class="number" data-stat="motores">3</span>
+                            <span class="label">Motores</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="number" data-stat="ordenesActivas">2</span>
+                            <span class="label">Órdenes activas</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="number" data-stat="historialServicios">15</span>
+                            <span class="label">Servicios</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="number">4.8</span>
+                            <span class="label">Calificación</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido principal del perfil -->
+            <div class="profile-form-container">
+                <!-- Formulario principal -->
+                <div>
+                    <form id="profileForm">
+                        <!-- Información personal -->
+                        <div class="profile-form-section">
+                            <h3><i class="fas fa-user-circle"></i> Información personal</h3>
+                            
+                            <div class="form-row-profile">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre completo *</label>
+                                    <input type="text" id="nombre" name="nombre" data-profile="nombre" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Correo electrónico *</label>
+                                    <input type="email" id="email" name="email" data-profile="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row-profile">
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono fijo</label>
+                                    <input type="tel" id="telefono" name="telefono" data-profile="telefono">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="celular">Celular *</label>
+                                    <input type="tel" id="celular" name="celular" data-profile="celular" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="direccion">Dirección</label>
+                                <textarea id="direccion" name="direccion" data-profile="direccion" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Información de empresa -->
+                        <div class="profile-form-section">
+                            <h3><i class="fas fa-building"></i> Información de empresa</h3>
+                            
+                            <div class="form-row-profile">
+                                <div class="form-group">
+                                    <label for="empresa">Nombre de empresa</label>
+                                    <input type="text" id="empresa" name="empresa" data-profile="empresa">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="puesto">Puesto/Cargo</label>
+                                    <input type="text" id="puesto" name="puesto" data-profile="puesto">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ruc">RUC/Identificación fiscal</label>
+                                <input type="text" id="ruc" name="ruc" data-profile="ruc">
+                                <small class="form-text">Necesario para facturas electrónicas</small>
+                            </div>
+                        </div>
+
+                        <!-- Preferencias de notificación -->
+                        <div class="profile-form-section">
+                            <h3><i class="fas fa-bell"></i> Preferencias de notificación</h3>
+                            
+                            <div class="notification-settings">
+                                <div class="setting-item">
+                                    <div class="setting-label">
+                                        <h5>Notificaciones por email</h5>
+                                        <p>Recibir actualizaciones de órdenes por correo</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="toggle-emailOrdenes" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-label">
+                                        <h5>Recordatorios de mantenimiento</h5>
+                                        <p>Avisos sobre próximos mantenimientos preventivos</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="toggle-emailMantenimiento" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-label">
+                                        <h5>SMS para urgencias</h5>
+                                        <p>Mensajes de texto para situaciones urgentes</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="toggle-smsUrgentes" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="setting-item">
+                                    <div class="setting-label">
+                                        <h5>Newsletter técnico</h5>
+                                        <p>Consejos y novedades sobre mantenimiento de motores</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="toggle-newsletter">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botones de acción -->
+                        <div class="profile-form-section">
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-save"></i> Guardar cambios
+                                </button>
+                                <button type="button" class="btn btn-outline" onclick="cambiarContrasena()">
+                                    <i class="fas fa-lock"></i> Cambiar contraseña
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Seguridad de la cuenta -->
+                    <div class="profile-form-section">
+                        <h3><i class="fas fa-shield-alt"></i> Seguridad de la cuenta</h3>
+                        
+                        <div class="security-alert">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Último acceso: <strong>20 Ene 2024, 14:30</strong> desde San José, Costa Rica</p>
+                        </div>
+                        
+                        <div class="security-items">
+                            <div class="security-item">
+                                <i class="fas fa-key"></i>
+                                <div class="security-info">
+                                    <h5>Contraseña</h5>
+                                    <p>Último cambio hace 90 días</p>
+                                </div>
+                                <button class="btn btn-outline btn-sm" onclick="cambiarContrasena()">
+                                    Cambiar
+                                </button>
+                            </div>
+                            
+                            <div class="security-item">
+                                <i class="fas fa-laptop"></i>
+                                <div class="security-info">
+                                    <h5>Sesiones activas</h5>
+                                    <p>1 dispositivo conectado</p>
+                                </div>
+                                <button class="btn btn-outline btn-sm" onclick="verSesiones()">
+                                    Gestionar
+                                </button>
+                            </div>
+                            
+                            <div class="security-item">
+                                <i class="fas fa-history"></i>
+                                <div class="security-info">
+                                    <h5>Historial de acceso</h5>
+                                    <p>Ver todos los inicios de sesión</p>
+                                </div>
+                                <button class="btn btn-outline btn-sm" onclick="verHistorialAcceso()">
+                                    Ver
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exportar datos -->
+                    <div class="profile-form-section">
+                        <h3><i class="fas fa-download"></i> Exportar mis datos</h3>
+                        <p>Puede descargar todos sus datos en formato estándar.</p>
+                        
+                        <div class="export-options">
+                            <button class="btn btn-outline" onclick="exportarDatos()">
+                                <i class="fas fa-file-export"></i> Exportar todos mis datos
+                            </button>
+                            <button class="btn btn-outline" onclick="exportarHistorial()">
+                                <i class="fas fa-history"></i> Exportar historial de servicios
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="profile-sidebar">
+                    <!-- Información de cuenta -->
+                    <div class="sidebar-card">
+                        <h4><i class="fas fa-info-circle"></i> Información de cuenta</h4>
+                        
+                        <div class="info-card">
+                            <div class="info-item">
+                                <span class="info-label">Cliente desde:</span>
+                                <span class="info-value">15 Ene 2020</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">ID de cliente:</span>
+                                <span class="info-value">CLI-2020-0015</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Tipo de cuenta:</span>
+                                <span class="info-value">Premium</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Estado:</span>
+                                <span class="info-value"><span class="badge bg-success">Activa</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cuenta -->
+                    <div class="sidebar-card danger-zone">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Zona de peligro</h4>
+                        <p class="warning-text">Estas acciones no se pueden deshacer</p>
+                        
+                        <div class="danger-actions">
+                            <button class="btn btn-outline btn-sm btn-block" onclick="eliminarCuenta()" style="color: #ef4444; border-color: #ef4444;">
+                                <i class="fas fa-trash"></i> Eliminar mi cuenta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="public-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-user"></i> Gestión de perfil</h4>
+                    <p>Administre su información personal y preferencias</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Soporte</h4>
+                    <p><i class="fas fa-question-circle"></i> ¿Necesita ayuda con su cuenta?</p>
+                    <a href="mailto:soporte@tallerelectrico.com" class="btn btn-outline btn-sm">
+                        <i class="fas fa-envelope"></i> Contactar soporte
+                    </a>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Privacidad</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Política de privacidad</a></li>
+                        <li><a href="#">Términos del servicio</a></li>
+                        <li><a href="#">Protección de datos</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> Taller Eléctrico Mecánico. Mi perfil.</p>
+                <p>
+                    <a href="../cliente-dashboard.html">← Volver al Dashboard</a> |
+                    <a href="../public-index.html">Sitio público</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/public.js"></script>
+    <script src="../js/cliente.js"></script>
+    
+    <script>
+        // Funciones específicas para perfil
+        function verSesiones() {
+            alert('Mostrando sesiones activas...\n\nSe abriría una lista de todos los dispositivos conectados a su cuenta.');
+        }
+
+        function verHistorialAcceso() {
+            alert('Mostrando historial de acceso...\n\nSe abriría un registro completo de todos los inicios de sesión.');
+        }
+
+        function exportarHistorial() {
+            showNotification('Preparando exportación del historial de servicios...', 'info');
+            setTimeout(() => {
+                showNotification('Historial exportado exitosamente', 'success');
+            }, 2000);
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Cargar datos del perfil
+            setTimeout(() => cargarDatosPerfil(), 100);
+            
+            // Estilos adicionales
+            const style = document.createElement('style');
+            style.textContent = `
+                .danger-zone {
+                    border: 2px solid #ef4444;
+                }
+                
+                .danger-zone h4 i {
+                    color: #ef4444;
+                }
+                
+                .warning-text {
+                    color: #ef4444;
+                    font-size: 14px;
+                    margin-bottom: 15px;
+                }
+                
+                .danger-actions {
+                    margin-top: 15px;
+                }
+                
+                .form-actions {
+                    display: flex;
+                    gap: 15px;
+                    margin-top: 30px;
+                }
+                
+                .export-options {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    margin-top: 15px;
+                }
+                
+                .export-options .btn {
+                    justify-content: center;
+                }
+                
+                .info-card {
+                    padding: 15px;
+                    margin-bottom: 0;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Validación de formulario
+            const form = document.getElementById('profileForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const email = document.getElementById('email');
+                    const celular = document.getElementById('celular');
+                    
+                    // Validar email
+                    if (email && !isValidEmail(email.value)) {
+                        e.preventDefault();
+                        showNotification('Por favor ingrese un email válido', 'error');
+                        email.focus();
+                        return;
+                    }
+                    
+                    // Validar celular (formato costarricense simplificado)
+                    if (celular && !/^\d{8}$/.test(celular.value.replace(/\D/g, ''))) {
+                        e.preventDefault();
+                        showNotification('Por favor ingrese un número de celular válido (8 dígitos)', 'error');
+                        celular.focus();
+                        return;
+                    }
+                });
+                
+                // Validación en tiempo real
+                document.querySelectorAll('input, textarea').forEach(input => {
+                    input.addEventListener('blur', function() {
+                        if (this.value.trim() && this.checkValidity()) {
+                            this.style.borderColor = '';
+                        }
+                    });
+                });
+            }
+        });
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+    </script>
+</body>
+</html>

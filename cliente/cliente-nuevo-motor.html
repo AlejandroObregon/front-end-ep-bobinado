@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Nuevo Motor - Área del Cliente</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/cliente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="public-page">
+    <!-- Header del Cliente -->
+    <header class="public-header">
+        <div class="container">
+            <nav class="public-nav">
+                <a href="../cliente-dashboard.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Mi Taller</span>
+                </a>
+                <div class="user-welcome">
+                    <!-- Será llenado por cliente.js -->
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../cliente-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="cliente-mis-motores.html"><i class="fas fa-motorcycle"></i> Mis Motores</a></li>
+                    <li><a href="cliente-mis-ordenes.html"><i class="fas fa-clipboard-list"></i> Mis Órdenes</a></li>
+                    <li><a href="cliente-historial.html"><i class="fas fa-history"></i> Historial</a></li>
+                    <li><a href="cliente-perfil.html"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li>
+                        <a href="../public-index.html" class="btn btn-outline">
+                            <i class="fas fa-sign-out-alt"></i> Salir
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="public-main">
+        <div class="container">
+            <!-- Encabezado -->
+            <div class="dashboard-header">
+                <h1><i class="fas fa-plus-circle"></i> Registrar Nuevo Motor</h1>
+                <p class="welcome-message">Agregue un nuevo motor a su parque para realizarle seguimiento y mantenimiento</p>
+            </div>
+
+            <!-- Stepper de pasos -->
+            <div class="request-stepper">
+                <div class="step-item active">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Tipo de motor</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Especificaciones</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Documentación</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Confirmación</div>
+                </div>
+            </div>
+
+            <!-- Formulario de nuevo motor -->
+            <div class="new-motor-form">
+                <form id="nuevoMotorForm">
+                    <!-- Paso 1: Tipo de motor -->
+                    <div class="form-step active" id="step1">
+                        <div class="form-step-header">
+                            <h3><i class="fas fa-cogs"></i> Seleccione el tipo de motor</h3>
+                            <p>Elija el tipo de motor que desea registrar</p>
+                        </div>
+                        
+                        <div class="motor-type-selector">
+                            <div class="type-option" data-type="monofasico" onclick="seleccionarTipoMotor('monofasico')">
+                                <div class="type-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <h4>Monofásico</h4>
+                                <p>Motor de 1 fase, ideal para aplicaciones domésticas y pequeñas industrias</p>
+                                <div class="type-badges">
+                                    <span class="badge bg-primary">220V</span>
+                                    <span class="badge bg-info">Hasta 5 HP</span>
+                                </div>
+                            </div>
+                            
+                            <div class="type-option" data-type="trifasico" onclick="seleccionarTipoMotor('trifasico')">
+                                <div class="type-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <h4>Trifásico</h4>
+                                <p>Motor de 3 fases, para aplicaciones industriales y de mayor potencia</p>
+                                <div class="type-badges">
+                                    <span class="badge bg-primary">220V/440V</span>
+                                    <span class="badge bg-info">Hasta 500 HP</span>
+                                </div>
+                            </div>
+                            
+                            <div class="type-option" data-type="dc" onclick="seleccionarTipoMotor('dc')">
+                                <div class="type-icon">
+                                    <i class="fas fa-car-battery"></i>
+                                </div>
+                                <h4>Corriente Continua</h4>
+                                <p>Motor DC para aplicaciones especiales y control de velocidad</p>
+                                <div class="type-badges">
+                                    <span class="badge bg-primary">12V - 240V</span>
+                                    <span class="badge bg-info">Control preciso</span>
+                                </div>
+                            </div>
+                            
+                            <div class="type-option" data-type="especial" onclick="seleccionarTipoMotor('especial')">
+                                <div class="type-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h4>Especial</h4>
+                                <p>Motores con especificaciones particulares o personalizadas</p>
+                                <div class="type-badges">
+                                    <span class="badge bg-warning">Especial</span>
+                                    <span class="badge bg-info">Consultar</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <div></div>
+                            <button type="button" class="btn btn-primary btn-next" onclick="siguientePasoMotor()">
+                                Siguiente <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Especificaciones -->
+                    <div class="form-step" id="step2">
+                        <div class="form-step-header">
+                            <h3><i class="fas fa-clipboard-list"></i> Especificaciones técnicas</h3>
+                            <p>Complete la información técnica del motor</p>
+                        </div>
+                        
+                        <div class="form-section-motor">
+                            <legend><i class="fas fa-industry"></i> Información básica</legend>
+                            
+                            <div class="form-row-request">
+                                <div class="form-group">
+                                    <label for="marca">Marca *</label>
+                                    <input type="text" id="marca" required placeholder="Ej: SIEMENS, WEG, ABB">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="modelo">Modelo *</label>
+                                    <input type="text" id="modelo" required placeholder="Ej: 20HP Industrial">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row-request">
+                                <div class="form-group">
+                                    <label for="serial">Número de serie *</label>
+                                    <input type="text" id="serial" required placeholder="Ej: SI-2020-4587">
+                                    <small class="form-text">Encontrarlo en la placa del motor</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="potencia">Potencia</label>
+                                    <input type="text" id="potencia" placeholder="Ej: 20 HP, 15 kW">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section-motor">
+                            <legend><i class="fas fa-bolt"></i> Especificaciones eléctricas</legend>
+                            
+                            <div class="tech-specs-grid">
+                                <div class="form-group">
+                                    <h5><i class="fas fa-bolt"></i> Voltaje</h5>
+                                    <input type="text" id="voltaje" placeholder="Ej: 220V, 440V">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <h5><i class="fas fa-tachometer-alt"></i> RPM</h5>
+                                    <input type="number" id="rpm" placeholder="Ej: 1750, 3450">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <h5><i class="fas fa-plug"></i> Corriente</h5>
+                                    <input type="text" id="corriente" placeholder="Ej: 25 A">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <h5><i class="fas fa-wave-square"></i> Frecuencia</h5>
+                                    <input type="text" id="frecuencia" value="60 Hz" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section-motor">
+                            <legend><i class="fas fa-calendar-alt"></i> Información adicional</legend>
+                            
+                            <div class="form-row-request">
+                                <div class="form-group">
+                                    <label for="añoFabricacion">Año de fabricación</label>
+                                    <input type="number" id="añoFabricacion" min="1900" max="2024" placeholder="Ej: 2020">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="fechaCompra">Fecha de compra</label>
+                                    <input type="date" id="fechaCompra">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ubicacion">Ubicación del motor</label>
+                                <input type="text" id="ubicacion" placeholder="Ej: Planta principal, sala de máquinas">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="notas">Notas adicionales</label>
+                                <textarea id="notas" rows="3" placeholder="Estado actual, problemas conocidos, aplicaciones, etc."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-outline btn-prev" onclick="pasoAnteriorMotor()">
+                                <i class="fas fa-arrow-left"></i> Anterior
+                            </button>
+                            <button type="button" class="btn btn-primary btn-next" onclick="siguientePasoMotor()">
+                                Siguiente <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Documentación -->
+                    <div class="form-step" id="step3">
+                        <div class="form-step-header">
+                            <h3><i class="fas fa-file-alt"></i> Documentación del motor</h3>
+                            <p>Suba documentos relacionados con el motor (opcional)</p>
+                        </div>
+                        
+                        <div class="form-section-motor">
+                            <legend><i class="fas fa-upload"></i> Subir documentos</legend>
+                            
+                            <div class="document-upload">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="upload-text">
+                                    <strong>Arrastre y suelte documentos aquí</strong>
+                                    <p>o haga clic para seleccionar archivos</p>
+                                </div>
+                                <div class="upload-hint">
+                                    Formatos aceptados: PDF, JPG, PNG (máx. 10MB por archivo)
+                                </div>
+                                <input type="file" id="documentUpload" multiple accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+                            </div>
+                            
+                            <div class="uploaded-files">
+                                <!-- Se llena con JavaScript -->
+                            </div>
+                            
+                            <div class="document-types">
+                                <h5>Documentos recomendados:</h5>
+                                <ul>
+                                    <li><i class="fas fa-file-pdf text-danger"></i> Placa de datos del motor</li>
+                                    <li><i class="fas fa-file-pdf text-danger"></i> Manual de usuario</li>
+                                    <li><i class="fas fa-file-image text-primary"></i> Fotos del motor</li>
+                                    <li><i class="fas fa-file-pdf text-danger"></i> Factura de compra</li>
+                                    <li><i class="fas fa-file-pdf text-danger"></i> Diagramas eléctricos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Resumen del motor -->
+                        <div class="motor-summary">
+                            <h4><i class="fas fa-list-alt"></i> Resumen del motor</h4>
+                            
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <span class="summary-label">Tipo</span>
+                                    <span class="summary-value" data-field="tipoNombre">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Marca</span>
+                                    <span class="summary-value" data-field="marca">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Modelo</span>
+                                    <span class="summary-value" data-field="modelo">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Serial</span>
+                                    <span class="summary-value" data-field="serial">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Potencia</span>
+                                    <span class="summary-value" data-field="potencia">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Voltaje</span>
+                                    <span class="summary-value" data-field="voltaje">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-outline btn-prev" onclick="pasoAnteriorMotor()">
+                                <i class="fas fa-arrow-left"></i> Anterior
+                            </button>
+                            <button type="button" class="btn btn-primary btn-next" onclick="siguientePasoMotor()">
+                                Siguiente <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Confirmación -->
+                    <div class="form-step" id="step4">
+                        <div class="form-step-header">
+                            <h3><i class="fas fa-check-circle"></i> Confirmar registro</h3>
+                            <p>Revise la información y registre el nuevo motor</p>
+                        </div>
+                        
+                        <div class="confirmation-card">
+                            <div class="confirmation-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            
+                            <h3>¡Motor listo para registrar!</h3>
+                            <p>Revise los detalles de su motor antes de proceder con el registro en el sistema.</p>
+                            
+                            <div class="motor-summary">
+                                <div class="summary-grid">
+                                    <div class="summary-item">
+                                        <span class="summary-label">Tipo</span>
+                                        <span class="summary-value" data-field="tipoNombre">-</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-label">Marca</span>
+                                        <span class="summary-value" data-field="marca">-</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-label">Modelo</span>
+                                        <span class="summary-value" data-field="modelo">-</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-label">Serial</span>
+                                        <span class="summary-value" data-field="serial">-</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-label">Potencia</span>
+                                        <span class="summary-value" data-field="potencia">-</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-label">Voltaje</span>
+                                        <span class="summary-value" data-field="voltaje">-</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-label">Año</span>
+                                        <span class="summary-value" data-field="añoFabricacion">-</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span class="summary-label">Ubicación</span>
+                                        <span class="summary-value" data-field="ubicacion">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" style="margin: 30px 0;">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" required>
+                                    <span>Confirmo que la información es correcta y autorizo el registro en el sistema</span>
+                                </label>
+                            </div>
+                            
+                            <div style="margin: 30px 0;">
+                                <p>ID del motor asignado:</p>
+                                <div class="request-id" id="motorSerial">Se generará al registrar</div>
+                            </div>
+                            
+                            <div class="form-navigation" style="border: none; padding: 0;">
+                                <button type="button" class="btn btn-outline btn-prev" onclick="pasoAnteriorMotor()">
+                                    <i class="fas fa-arrow-left"></i> Corregir información
+                                </button>
+                                <button type="button" class="btn btn-primary btn-lg pulse-animation" onclick="registrarNuevoMotor()">
+                                    <i class="fas fa-save"></i> Registrar Motor
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Beneficios del registro -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-star"></i> Beneficios de registrar sus motores</h2>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card card-enhanced">
+                        <div class="benefit-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Historial completo</h4>
+                            <p>Mantenga un registro de todos los servicios realizados a cada motor</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card card-enhanced">
+                        <div class="benefit-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Recordatorios automáticos</h4>
+                            <p>Reciba alertas de mantenimiento preventivo según el uso del motor</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card card-enhanced">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Análisis de costos</h4>
+                            <p>Controle y analice los gastos de mantenimiento por motor</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card card-enhanced">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Garantías extendidas</h4>
+                            <p>Mantenga un registro de las garantías activas por motor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="public-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-plus-circle"></i> Registro de motores</h4>
+                    <p>Agregue y gestione su parque de motores</p>
+                    <div class="contact-support">
+                        <p><i class="fas fa-question-circle"></i> ¿Necesita ayuda con el registro?</p>
+                        <a href="mailto:soporte@tallerelectrico.com" class="btn btn-outline btn-sm">
+                            <i class="fas fa-envelope"></i> Contactar soporte
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Recursos útiles</h4>
+                    <ul class="footer-links">
+                        <li><a href="../public/public-modelos3d.html">Modelos 3D de motores</a></li>
+                        <li><a href="../public/public-blog.html">Guías de mantenimiento</a></li>
+                        <li><a href="../public/public-servicios.html">Servicios disponibles</a></li>
+                        <li><a href="#">Catálogo de marcas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Soporte técnico</h4>
+                    <p><i class="fas fa-phone"></i> Teléfono: 2222-5555 ext. 2</p>
+                    <p><i class="fas fa-whatsapp"></i> WhatsApp: 8888-9999</p>
+                    <p><i class="fas fa-envelope"></i> Email: soporte@tallerelectrico.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> Taller Eléctrico Mecánico. Registro de motores.</p>
+                <p>
+                    <a href="cliente-mis-motores.html">← Ver mis motores</a> |
+                    <a href="../cliente-dashboard.html">Dashboard principal</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/public.js"></script>
+    <script src="../js/cliente.js"></script>
+    
+    <script>
+        // Funciones específicas para nuevo motor
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Estilos adicionales
+            const style = document.createElement('style');
+            style.textContent = `
+                .type-badges {
+                    display: flex;
+                    gap: 5px;
+                    margin-top: 10px;
+                    justify-content: center;
+                }
+                
+                .benefits-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 20px;
+                    margin-top: 20px;
+                }
+                
+                .benefit-card {
+                    display: flex;
+                    gap: 20px;
+                    padding: 25px;
+                    align-items: center;
+                }
+                
+                .benefit-icon {
+                    width: 60px;
+                    height: 60px;
+                    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: 24px;
+                    flex-shrink: 0;
+                }
+                
+                .benefit-content h4 {
+                    margin: 0 0 10px 0;
+                    color: var(--text-dark);
+                }
+                
+                .benefit-content p {
+                    margin: 0;
+                    color: var(--text-medium);
+                    font-size: 14px;
+                }
+                
+                .document-types ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 20px 0 0 0;
+                }
+                
+                .document-types li {
+                    padding: 8px 0;
+                    border-bottom: 1px solid var(--border-light);
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                
+                .document-types li:last-child {
+                    border-bottom: none;
+                }
+                
+                .document-types li i {
+                    width: 20px;
+                }
+                
+                .form-section-motor {
+                    margin-bottom: 30px;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

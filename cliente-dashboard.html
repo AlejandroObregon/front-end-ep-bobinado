@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta - Taller Eléctrico Mecánico</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="css/cliente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="public-page">
+    <!-- Header del Cliente Logeado -->
+    <header class="public-header">
+        <div class="container">
+            <nav class="public-nav">
+                <a href="cliente-dashboard.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Mi Taller</span>
+                </a>
+                <div class="user-welcome">
+                    <span>Bienvenido, <strong>Juan Pérez</strong></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="cliente-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="cliente/cliente-mis-motores.html"><i class="fas fa-motorcycle"></i> Mis Motores</a></li>
+                    <li><a href="cliente/cliente-mis-ordenes.html"><i class="fas fa-clipboard-list"></i> Órdenes</a></li>
+                    <li><a href="cliente/cliente-historial.html"><i class="fas fa-history"></i> Historial</a></li>
+                    <li><a href="cliente/cliente-perfil.html"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li>
+                        <a href="public-index.html" class="btn btn-outline" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Salir
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="public-main">
+        <div class="container">
+            <!-- Bienvenida y resumen -->
+            <div class="dashboard-header">
+                <h1><i class="fas fa-tachometer-alt"></i> Panel de Control</h1>
+                <p class="welcome-message">Aquí puede gestionar todos sus motores y servicios</p>
+            </div>
+
+            <!-- Stats del cliente -->
+            <div class="stats dashboard-stats">
+                <div class="stat-item card-enhanced">
+                    <div class="stat-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">3</div>
+                        <p>Motores Registrados</p>
+                    </div>
+                    <a href="cliente/cliente-mis-motores.html" class="stat-link">Ver todos →</a>
+                </div>
+                
+                <div class="stat-item card-enhanced">
+                    <div class="stat-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">2</div>
+                        <p>Órdenes Activas</p>
+                    </div>
+                    <a href="cliente/cliente-mis-ordenes.html" class="stat-link">Ver todas →</a>
+                </div>
+                
+                <div class="stat-item card-enhanced">
+                    <div class="stat-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">15</div>
+                        <p>Servicios Realizados</p>
+                    </div>
+                    <a href="cliente/cliente-historial.html" class="stat-link">Ver historial →</a>
+                </div>
+                
+                <div class="stat-item card-enhanced">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number">7</div>
+                        <p>Días Próx. Mantenimiento</p>
+                    </div>
+                    <a href="cliente/cliente-mis-motores.html" class="stat-link">Programar →</a>
+                </div>
+            </div>
+
+            <!-- Sección de Órdenes Activas -->
+            <section class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-clipboard-list"></i> Órdenes Activas</h2>
+                    <a href="cliente/cliente-mis-ordenes.html" class="btn btn-outline btn-sm">Ver todas</a>
+                </div>
+                
+                <div class="orders-grid">
+                    <!-- Orden 1 -->
+                    <div class="order-card card-enhanced">
+                        <div class="order-header">
+                            <span class="order-id">ORD-2024-0015</span>
+                            <span class="order-status badge bg-warning">En Reparación</span>
+                        </div>
+                        <div class="order-content">
+                            <h3>Motor Industrial 20HP</h3>
+                            <p><i class="fas fa-barcode"></i> Serial: SI-2020-4587</p>
+                            <p><i class="fas fa-calendar"></i> Ingreso: 15 Ene 2024</p>
+                            <p><i class="fas fa-user-cog"></i> Técnico: Carlos Vargas</p>
+                            <div class="progress-container">
+                                <div class="progress-label">
+                                    <span>Progreso de reparación</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-actions">
+                            <a href="cliente/cliente-mis-ordenes.html#detalle-0015" class="btn btn-primary btn-sm">
+                                <i class="fas fa-eye"></i> Ver Detalle
+                            </a>
+                            <button class="btn btn-outline btn-sm" onclick="contactTechnician('Carlos Vargas')">
+                                <i class="fas fa-comment"></i> Contactar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Orden 2 -->
+                    <div class="order-card card-enhanced">
+                        <div class="order-header">
+                            <span class="order-id">ORD-2024-0016</span>
+                            <span class="order-status badge bg-info">Espera Repuestos</span>
+                        </div>
+                        <div class="order-content">
+                            <h3>Motor Monofásico 5HP</h3>
+                            <p><i class="fas fa-barcode"></i> Serial: WEG-2021-7890</p>
+                            <p><i class="fas fa-calendar"></i> Ingreso: 18 Ene 2024</p>
+                            <p><i class="fas fa-clock"></i> Estimado: 25 Ene 2024</p>
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Esperando rodamientos especiales</span>
+                            </div>
+                        </div>
+                        <div class="order-actions">
+                            <a href="cliente/cliente-mis-ordenes.html#detalle-0016" class="btn btn-primary btn-sm">
+                                <i class="fas fa-eye"></i> Ver Detalle
+                            </a>
+                            <a href="cliente/cliente-solicitud-inspeccion.html" class="btn btn-outline btn-sm">
+                                <i class="fas fa-calendar-plus"></i> Agendar Visita
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección de Motores -->
+            <section class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-motorcycle"></i> Mis Motores</h2>
+                    <a href="cliente/cliente-mis-motores.html" class="btn btn-outline btn-sm">Gestionar motores</a>
+                </div>
+                
+                <div class="motors-grid">
+                    <!-- Motor 1 -->
+                    <div class="motor-card card-enhanced">
+                        <div class="motor-image">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <div class="motor-content">
+                            <h3>SIEMENS 20HP</h3>
+                            <p class="motor-serial"><i class="fas fa-barcode"></i> SI-2020-4587</p>
+                            <div class="motor-details">
+                                <span><i class="fas fa-bolt"></i> Trifásico</span>
+                                <span><i class="fas fa-tachometer-alt"></i> 1750 RPM</span>
+                                <span><i class="fas fa-calendar-check"></i> 2020</span>
+                            </div>
+                            <div class="motor-health">
+                                <span class="health-indicator good"><i class="fas fa-heart"></i> Buen estado</span>
+                                <span class="maintenance-due">Próx. mantenimiento: Feb 2024</span>
+                            </div>
+                        </div>
+                        <div class="motor-actions">
+                            <button class="btn btn-primary btn-sm" onclick="showMotorDetails('SI-2020-4587')">
+                                <i class="fas fa-chart-line"></i> Historial
+                            </button>
+                            <a href="cliente/cliente-modelos3d.html" class="btn btn-outline btn-sm">
+                                <i class="fas fa-cube"></i> Ver 3D
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Motor 2 -->
+                    <div class="motor-card card-enhanced">
+                        <div class="motor-image warning">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="motor-content">
+                            <h3>WEG 5HP</h3>
+                            <p class="motor-serial"><i class="fas fa-barcode"></i> WEG-2021-7890</p>
+                            <div class="motor-details">
+                                <span><i class="fas fa-bolt"></i> Monofásico</span>
+                                <span><i class="fas fa-tachometer-alt"></i> 3450 RPM</span>
+                                <span><i class="fas fa-calendar-check"></i> 2021</span>
+                            </div>
+                            <div class="motor-health">
+                                <span class="health-indicator repair"><i class="fas fa-wrench"></i> En reparación</span>
+                                <span class="maintenance-due">En taller desde: 18 Ene</span>
+                            </div>
+                        </div>
+                        <div class="motor-actions">
+                            <a href="cliente/cliente-mis-ordenes.html#detalle-0016" class="btn btn-primary btn-sm">
+                                <i class="fas fa-eye"></i> Ver Orden
+                            </a>
+                            <button class="btn btn-outline btn-sm" onclick="requestUpdate('WEG-2021-7890')">
+                                <i class="fas fa-sync"></i> Actualizar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Motor 3 -->
+                    <div class="motor-card card-enhanced">
+                        <div class="motor-image">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="motor-content">
+                            <h3>ABB 10HP</h3>
+                            <p class="motor-serial"><i class="fas fa-barcode"></i> ABB-2019-1234</p>
+                            <div class="motor-details">
+                                <span><i class="fas fa-bolt"></i> Trifásico</span>
+                                <span><i class="fas fa-tachometer-alt"></i> 1450 RPM</span>
+                                <span><i class="fas fa-calendar-check"></i> 2019</span>
+                            </div>
+                            <div class="motor-health">
+                                <span class="health-indicator good"><i class="fas fa-heart"></i> Óptimo</span>
+                                <span class="maintenance-due">Último: Nov 2023</span>
+                            </div>
+                        </div>
+                        <div class="motor-actions">
+                            <button class="btn btn-primary btn-sm" onclick="scheduleMaintenance('ABB-2019-1234')">
+                                <i class="fas fa-calendar-plus"></i> Agendar Mant.
+                            </button>
+                            <a href="cliente/cliente-modelos3d.html" class="btn btn-outline btn-sm">
+                                <i class="fas fa-cube"></i> Ver 3D
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Acciones Rápidas -->
+            <section class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bolt"></i> Acciones Rápidas</h2>
+                </div>
+                
+                <div class="quick-actions-grid">
+                    <a href="cliente/cliente-solicitud-inspeccion.html" class="quick-action card-enhanced">
+                        <div class="action-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Solicitar Inspección</h3>
+                        <p>Programe una visita técnica a su domicilio o empresa</p>
+                        <span class="action-link">Solicitar ahora →</span>
+                    </a>
+                    
+                    <a href="public/public-servicios.html" class="quick-action card-enhanced">
+                        <div class="action-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <h3>Nuevo Servicio</h3>
+                        <p>Solicite reparación o mantenimiento para un motor</p>
+                        <span class="action-link">Crear solicitud →</span>
+                    </a>
+                    
+                    <a href="cliente/cliente-historial.html" class="quick-action card-enhanced">
+                        <div class="action-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3>Ver Facturas</h3>
+                        <p>Acceda a su historial de pagos y facturas</p>
+                        <span class="action-link">Ver documentos →</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Notificaciones Recientes -->
+            <section class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bell"></i> Notificaciones Recientes</h2>
+                    <button class="btn btn-outline btn-sm" onclick="markAllAsRead()">
+                        <i class="fas fa-check-double"></i> Marcar todas
+                    </button>
+                </div>
+                
+                <div class="notifications-list">
+                    <div class="notification-item unread">
+                        <div class="notification-icon">
+                            <i class="fas fa-tools text-primary"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Actualización de Orden ORD-2024-0015</h4>
+                            <p>Su motor SI-2020-4587 ha pasado a etapa de pruebas finales</p>
+                            <span class="notification-time">Hace 2 horas</span>
+                        </div>
+                        <button class="notification-action" onclick="viewNotification(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <i class="fas fa-calendar-check text-success"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Mantenimiento Programado</h4>
+                            <p>Recuerde el mantenimiento preventivo de su motor ABB-2019-1234 para Febrero</p>
+                            <span class="notification-time">Ayer</span>
+                        </div>
+                        <button class="notification-action" onclick="viewNotification(2)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <i class="fas fa-file-invoice-dollar text-warning"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Factura Disponible</h4>
+                            <p>La factura #FAC-2024-0012 para su orden ORD-2024-0010 está lista para descarga</p>
+                            <span class="notification-time">18 Ene 2024</span>
+                        </div>
+                        <button class="notification-action" onclick="viewNotification(3)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="public-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-tools"></i> Área del Cliente</h4>
+                    <p>Gestiona todos tus motores y servicios en un solo lugar</p>
+                    <div class="contact-support">
+                        <a href="tel:+50622225555" class="btn btn-outline btn-sm">
+                            <i class="fas fa-phone"></i> Soporte: 2222-5555
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="cliente/cliente-mis-motores.html">Mis Motores</a></li>
+                        <li><a href="cliente/cliente-mis-ordenes.html">Órdenes Activas</a></li>
+                        <li><a href="cliente/cliente-historial.html">Historial de Servicios</a></li>
+                        <li><a href="cliente/cliente-perfil.html">Mi Perfil</a></li>
+                        <li><a href="cliente/cliente-solicitud-inspeccion.html">Solicitar Inspección</a></li>
+                        <li><a href="public/public-blog.html">Blog de Mantenimiento</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Horarios de Atención</h4>
+                    <p><i class="fas fa-clock"></i> Lunes a Viernes: 7:00 AM - 5:00 PM</p>
+                    <p><i class="fas fa-clock"></i> Sábados: 7:00 AM - 12:00 PM</p>
+                    <p><i class="fas fa-envelope"></i> clientes@tallerelectrico.com</p>
+                    <div class="emergency-contact">
+                        <p><i class="fas fa-exclamation-triangle"></i> Emergencias: 24/7</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> Taller Eléctrico Mecánico. Área del Cliente.</p>
+                <p>
+                    <a href="#">Política de Privacidad</a> | 
+                    <a href="#">Términos del Servicio</a> |
+                    <a href="../public-index.html">Volver al sitio público</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/public.js"></script>
+    <script>
+        // Funciones específicas del dashboard
+        function logout() {
+            if (confirm('¿Está seguro de cerrar sesión?')) {
+                localStorage.removeItem('userSession');
+                window.location.href = '../public-index.html';
+            }
+        }
+
+        function contactTechnician(technicianName) {
+            alert(`Contactando al técnico ${technicianName}...\n\nEsta función enviaría una notificación al técnico para que se comunique con usted.`);
+        }
+
+        function showMotorDetails(serial) {
+            alert(`Mostrando historial completo del motor ${serial}...\n\nSe abriría una ventana con todos los servicios realizados a este motor.`);
+        }
+
+        function scheduleMaintenance(serial) {
+            alert(`Agendando mantenimiento para el motor ${serial}...\n\nSería redirigido al formulario de agendamiento.`);
+        }
+
+        function requestUpdate(serial) {
+            alert(`Solicitando actualización del estado para ${serial}...\n\nEl técnico será notificado para que actualice la información.`);
+        }
+
+        function viewNotification(id) {
+            alert(`Abriendo notificación #${id}...\n\nMostraría los detalles completos de la notificación.`);
+        }
+
+        function markAllAsRead() {
+            document.querySelectorAll('.notification-item.unread').forEach(item => {
+                item.classList.remove('unread');
+            });
+            showNotification('Todas las notificaciones marcadas como leídas', 'success');
+        }
+
+        // Inicializar fecha actual
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Simular datos de sesión
+            if (!localStorage.getItem('userSession')) {
+                console.log('Sesión simulada para demostración');
+            }
+        });
+    </script>
+</body>
+</html>

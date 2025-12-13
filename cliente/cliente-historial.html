@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Servicios - Área del Cliente</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/cliente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="public-page">
+    <!-- Header del Cliente -->
+    <header class="public-header">
+        <div class="container">
+            <nav class="public-nav">
+                <a href="../cliente-dashboard.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Mi Taller</span>
+                </a>
+                <div class="user-welcome">
+                    <!-- Será llenado por cliente.js -->
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../cliente-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="cliente-mis-motores.html"><i class="fas fa-motorcycle"></i> Mis Motores</a></li>
+                    <li><a href="cliente-mis-ordenes.html"><i class="fas fa-clipboard-list"></i> Mis Órdenes</a></li>
+                    <li><a href="cliente-historial.html" class="active"><i class="fas fa-history"></i> Historial</a></li>
+                    <li><a href="cliente-perfil.html"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li>
+                        <a href="../public-index.html" class="btn btn-outline">
+                            <i class="fas fa-sign-out-alt"></i> Salir
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="public-main">
+        <div class="container">
+            <!-- Encabezado -->
+            <div class="dashboard-header">
+                <h1><i class="fas fa-history"></i> Historial de Servicios</h1>
+                <p class="welcome-message">Consulte todos los servicios realizados a sus motores</p>
+            </div>
+
+            <!-- Tabs de navegación -->
+            <div class="history-tabs">
+                <button class="history-tab active" data-tab="tab-todos">
+                    <i class="fas fa-list"></i> Todos los servicios
+                </button>
+                <button class="history-tab" data-tab="tab-mantenimiento">
+                    <i class="fas fa-cogs"></i> Mantenimientos
+                </button>
+                <button class="history-tab" data-tab="tab-reparaciones">
+                    <i class="fas fa-tools"></i> Reparaciones
+                </button>
+                <button class="history-tab" data-tab="tab-facturas">
+                    <i class="fas fa-file-invoice-dollar"></i> Facturas
+                </button>
+            </div>
+
+            <!-- Barra de herramientas -->
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <label for="filterPeriodo">Período:</label>
+                    <select id="filterPeriodo">
+                        <option value="ultimo-mes">Último mes</option>
+                        <option value="ultimos-3">Últimos 3 meses</option>
+                        <option value="ultimo-año">Último año</option>
+                        <option value="personalizado">Personalizado</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="filterMotor">Motor:</label>
+                    <select id="filterMotor">
+                        <option value="">Todos los motores</option>
+                        <option value="SI-2020-4587">SIEMENS 20HP</option>
+                        <option value="WEG-2021-7890">WEG 5HP</option>
+                        <option value="ABB-2019-1234">ABB 10HP</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchHistory" placeholder="Buscar en historial...">
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" onclick="aplicarFiltros()">
+                    <i class="fas fa-filter"></i> Aplicar
+                </button>
+                
+                <button class="btn btn-outline" onclick="generarReporteHistorial()">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+
+            <!-- Contenido de los tabs -->
+            
+            <!-- Tab: Todos los servicios -->
+            <div class="tab-content active" id="tab-todos">
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-clipboard-check"></i> 15 servicios realizados</h2>
+                        <div class="export-options">
+                            <label for="reportFormat">Formato:</label>
+                            <select id="reportFormat">
+                                <option value="pdf">PDF</option>
+                                <option value="excel">Excel</option>
+                                <option value="csv">CSV</option>
+                            </select>
+                            <select id="reportPeriod">
+                                <option value="ultimo-mes">Último mes</option>
+                                <option value="ultimo-año">Último año</option>
+                                <option value="todo">Todo el historial</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Orden</th>
+                                <th>Fecha</th>
+                                <th>Motor</th>
+                                <th>Servicio</th>
+                                <th>Descripción</th>
+                                <th>Técnico</th>
+                                <th>Monto</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ORD-2023-1245</strong></td>
+                                <td>10 Dic 2023</td>
+                                <td>ABB 10HP</td>
+                                <td>Mantenimiento preventivo</td>
+                                <td>Limpieza, lubricación y revisión general</td>
+                                <td>Carlos Vargas</td>
+                                <td>₡85,000</td>
+                                <td>
+                                    <button class="btn btn-outline btn-sm" onclick="verDetalleServicio('ORD-2023-1245')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" onclick="descargarFactura('ORD-2023-1245')">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td><strong>ORD-2023-1189</strong></td>
+                                <td>25 Nov 2023</td>
+                                <td>SIEMENS 20HP</td>
+                                <td>Reparación bobinado</td>
+                                <td>Rebobinado completo por cortocircuito</td>
+                                <td>Ana Rodríguez</td>
+                                <td>₡120,000</td>
+                                <td>
+                                    <button class="btn btn-outline btn-sm" onclick="verDetalleServicio('ORD-2023-1189')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" onclick="descargarFactura('ORD-2023-1189')">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td><strong>ORD-2023-1050</strong></td>
+                                <td>15 Oct 2023</td>
+                                <td>WEG 5HP</td>
+                                <td>Diagnóstico especializado</td>
+                                <td>Análisis de vibraciones y termografía</td>
+                                <td>Miguel Soto</td>
+                                <td>₡45,000</td>
+                                <td>
+                                    <button class="btn btn-outline btn-sm" onclick="verDetalleServicio('ORD-2023-1050')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" onclick="descargarReporte('ORD-2023-1050')">
+                                        <i class="fas fa-file-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td><strong>ORD-2023-0920</strong></td>
+                                <td>05 Sep 2023</td>
+                                <td>ABB 10HP</td>
+                                <td>Cambio de rodamientos</td>
+                                <td>Reemplazo rodamientos principales</td>
+                                <td>Carlos Vargas</td>
+                                <td>₡65,000</td>
+                                <td>
+                                    <button class="btn btn-outline btn-sm" onclick="verDetalleServicio('ORD-2023-0920')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-outline btn-sm" onclick="descargarFactura('ORD-2023-0920')">
+                                        <i class="fas fa-file-invoice"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <!-- Paginación -->
+                    <div class="pagination">
+                        <button class="page-item active">1</button>
+                        <button class="page-item">2</button>
+                        <button class="page-item">3</button>
+                        <button class="page-item">4</button>
+                        <button class="page-item">Siguiente →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Mantenimientos -->
+            <div class="tab-content" id="tab-mantenimiento">
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-cogs"></i> Mantenimientos preventivos</h2>
+                    </div>
+                    
+                    <div class="maintenance-grid">
+                        <div class="maintenance-card card-enhanced">
+                            <div class="maintenance-header">
+                                <h3>ABB 10HP</h3>
+                                <span class="maintenance-status badge bg-success">Completado</span>
+                            </div>
+                            <div class="maintenance-content">
+                                <p><i class="fas fa-calendar"></i> <strong>Último:</strong> 10 Dic 2023</p>
+                                <p><i class="fas fa-calendar-alt"></i> <strong>Próximo:</strong> 10 Mar 2024</p>
+                                <p><i class="fas fa-road"></i> <strong>Horas de uso:</strong> 2,150 horas</p>
+                                <div class="maintenance-checklist">
+                                    <h5>Tareas realizadas:</h5>
+                                    <ul>
+                                        <li><i class="fas fa-check text-success"></i> Limpieza interna y externa</li>
+                                        <li><i class="fas fa-check text-success"></i> Lubricación de rodamientos</li>
+                                        <li><i class="fas fa-check text-success"></i> Verificación de conexiones</li>
+                                        <li><i class="fas fa-check text-success"></i> Pruebas de aislamiento</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="maintenance-actions">
+                                <button class="btn btn-primary btn-sm" onclick="programarMantenimiento('ABB-2019-1234')">
+                                    <i class="fas fa-calendar-plus"></i> Programar próximo
+                                </button>
+                                <button class="btn btn-outline btn-sm" onclick="verDetalleServicio('ORD-2023-1245')">
+                                    <i class="fas fa-file-alt"></i> Ver reporte
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="maintenance-card card-enhanced">
+                            <div class="maintenance-header">
+                                <h3>SIEMENS 20HP</h3>
+                                <span class="maintenance-status badge bg-warning">Próximo</span>
+                            </div>
+                            <div class="maintenance-content">
+                                <p><i class="fas fa-calendar"></i> <strong>Último:</strong> 25 Nov 2023</p>
+                                <p><i class="fas fa-calendar-alt"></i> <strong>Próximo:</strong> 25 Feb 2024</p>
+                                <p><i class="fas fa-road"></i> <strong>Horas de uso:</strong> 3,450 horas</p>
+                                <div class="maintenance-checklist">
+                                    <h5>Recomendaciones:</h5>
+                                    <ul>
+                                        <li><i class="fas fa-info-circle text-primary"></i> Lubricación requerida</li>
+                                        <li><i class="fas fa-info-circle text-primary"></i> Verificar sellos</li>
+                                        <li><i class="fas fa-info-circle text-primary"></i> Revisión de baleros</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="maintenance-actions">
+                                <button class="btn btn-primary btn-sm" onclick="programarMantenimiento('SI-2020-4587')">
+                                    <i class="fas fa-calendar-plus"></i> Agendar ahora
+                                </button>
+                                <button class="btn btn-outline btn-sm" onclick="contactarAsesor()">
+                                    <i class="fas fa-user-cog"></i> Consultar técnico
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Reparaciones -->
+            <div class="tab-content" id="tab-reparaciones">
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-tools"></i> Historial de reparaciones</h2>
+                    </div>
+                    
+                    <div class="repairs-timeline">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">Nov 2023</div>
+                                <div class="timeline-content">
+                                    <h4>Reparación mayor - SIEMENS 20HP</h4>
+                                    <p><strong>Orden:</strong> ORD-2023-1189</p>
+                                    <p><strong>Problema:</strong> Cortocircuito en bobinado principal</p>
+                                    <p><strong>Solución:</strong> Rebobinado completo del motor</p>
+                                    <p><strong>Garantía:</strong> 6 meses</p>
+                                    <button class="btn btn-outline btn-sm" onclick="verDetalleServicio('ORD-2023-1189')">
+                                        <i class="fas fa-eye"></i> Ver detalles completos
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-date">Sep 2023</div>
+                                <div class="timeline-content">
+                                    <h4>Cambio de rodamientos - ABB 10HP</h4>
+                                    <p><strong>Orden:</strong> ORD-2023-0920</p>
+                                    <p><strong>Problema:</strong> Ruido excesivo y vibración</p>
+                                    <p><strong>Solución:</strong> Reemplazo de rodamientos 6205</p>
+                                    <p><strong>Garantía:</strong> 3 meses</p>
+                                    <button class="btn btn-outline btn-sm" onclick="verDetalleServicio('ORD-2023-0920')">
+                                        <i class="fas fa-eye"></i> Ver detalles completos
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-date">Jun 2023</div>
+                                <div class="timeline-content">
+                                    <h4>Reparación menor - WEG 5HP</h4>
+                                    <p><strong>Orden:</strong> ORD-2023-0650</p>
+                                    <p><strong>Problema:</strong> Fuga de aceite en sello</p>
+                                    <p><strong>Solución:</strong> Cambio de sello mecánico</p>
+                                    <p><strong>Garantía:</strong> 3 meses</p>
+                                    <button class="btn btn-outline btn-sm" onclick="verDetalleServicio('ORD-2023-0650')">
+                                        <i class="fas fa-eye"></i> Ver detalles completos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Facturas -->
+            <div class="tab-content" id="tab-facturas">
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-file-invoice-dollar"></i> Facturas y pagos</h2>
+                        <button class="btn btn-primary" onclick="generarEstadoCuenta()">
+                            <i class="fas fa-file-contract"></i> Estado de cuenta
+                        </button>
+                    </div>
+                    
+                    <div class="invoices-grid">
+                        <div class="invoice-card card-enhanced">
+                            <div class="invoice-header">
+                                <h3>FAC-2023-1245</h3>
+                                <span class="invoice-status badge bg-success">Pagada</span>
+                            </div>
+                            <div class="invoice-content">
+                                <p><strong>Orden:</strong> ORD-2023-1245</p>
+                                <p><strong>Fecha:</strong> 12 Dic 2023</p>
+                                <p><strong>Monto:</strong> ₡85,000</p>
+                                <p><strong>Método:</strong> Transferencia bancaria</p>
+                                <div class="invoice-details">
+                                    <p><strong>Descripción:</strong> Mantenimiento preventivo motor ABB 10HP</p>
+                                </div>
+                            </div>
+                            <div class="invoice-actions">
+                                <button class="btn btn-outline btn-sm" onclick="descargarFactura('FAC-2023-1245')">
+                                    <i class="fas fa-download"></i> Descargar
+                                </button>
+                                <button class="btn btn-outline btn-sm" onclick="reenviarFactura('FAC-2023-1245')">
+                                    <i class="fas fa-paper-plane"></i> Reenviar
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="invoice-card card-enhanced">
+                            <div class="invoice-header">
+                                <h3>FAC-2023-1190</h3>
+                                <span class="invoice-status badge bg-success">Pagada</span>
+                            </div>
+                            <div class="invoice-content">
+                                <p><strong>Orden:</strong> ORD-2023-1189</p>
+                                <p><strong>Fecha:</strong> 28 Nov 2023</p>
+                                <p><strong>Monto:</strong> ₡120,000</p>
+                                <p><strong>Método:</strong> Efectivo</p>
+                                <div class="invoice-details">
+                                    <p><strong>Descripción:</strong> Reparación bobinado motor SIEMENS 20HP</p>
+                                </div>
+                            </div>
+                            <div class="invoice-actions">
+                                <button class="btn btn-outline btn-sm" onclick="descargarFactura('FAC-2023-1190')">
+                                    <i class="fas fa-download"></i> Descargar
+                                </button>
+                                <button class="btn btn-outline btn-sm" onclick="reenviarFactura('FAC-2023-1190')">
+                                    <i class="fas fa-paper-plane"></i> Reenviar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-summary">
+                        <h4><i class="fas fa-chart-bar"></i> Resumen de pagos 2023</h4>
+                        <div class="summary-stats">
+                            <div class="summary-item">
+                                <div class="summary-label">Total pagado:</div>
+                                <div class="summary-value">₡325,000</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Servicios realizados:</div>
+                                <div class="summary-value">8 servicios</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Promedio por servicio:</div>
+                                <div class="summary-value">₡40,625</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-line"></i> Estadísticas de servicios</h2>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card card-enhanced">
+                        <div class="stat-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">8</div>
+                            <p>Reparaciones en 2023</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card card-enhanced">
+                        <div class="stat-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">5</div>
+                            <p>Mantenimientos preventivos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card card-enhanced">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">92%</div>
+                            <p>Servicios a tiempo</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card card-enhanced">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">4.8</div>
+                            <p>Calificación promedio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="public-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-history"></i> Historial de servicios</h4>
+                    <p>Consulte y descargue su historial completo de servicios</p>
+                    <div class="document-help">
+                        <p><i class="fas fa-question-circle"></i> ¿Necesita ayuda con sus documentos?</p>
+                        <a href="mailto:facturacion@tallerelectrico.com" class="btn btn-outline btn-sm">
+                            <i class="fas fa-envelope"></i> Contactar facturación
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Documentos disponibles</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="generarReporteHistorial()">Reporte anual de servicios</a></li>
+                        <li><a href="#" onclick="generarEstadoCuenta()">Estado de cuenta 2023</a></li>
+                        <li><a href="#" onclick="descargarTodasFacturas()">Todas las facturas (ZIP)</a></li>
+                        <li><a href="#" onclick="contactarContabilidad()">Certificaciones tributarias</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> Taller Eléctrico Mecánico. Historial del cliente.</p>
+                <p>
+                    <a href="../cliente-dashboard.html">← Volver al Dashboard</a> |
+                    <a href="../public-index.html">Sitio público</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/public.js"></script>
+    <script src="../js/cliente.js"></script>
+    
+    <script>
+        // Funciones específicas para historial
+        function verDetalleServicio(ordenId) {
+            alert(`Mostrando detalles completos de ${ordenId}...\n\nSe abriría una vista detallada con toda la información del servicio.`);
+        }
+
+        function programarMantenimiento(serial) {
+            alert(`Programando mantenimiento para motor ${serial}...\n\nSería redirigido al formulario de agendamiento.`);
+        }
+
+        function contactarAsesor() {
+            alert('Contactando con asesor de mantenimiento...\n\nSe abriría el formulario de contacto específico.');
+        }
+
+        function generarEstadoCuenta() {
+            showNotification('Generando estado de cuenta anual...', 'info');
+            setTimeout(() => {
+                showNotification('Estado de cuenta generado y enviado a su correo', 'success');
+            }, 2000);
+        }
+
+        function reenviarFactura(facturaId) {
+            showNotification(`Reenviando factura ${facturaId} a su correo...`, 'info');
+            setTimeout(() => {
+                showNotification('Factura reenviada exitosamente', 'success');
+            }, 1500);
+        }
+
+        function descargarTodasFacturas() {
+            showNotification('Preparando descarga de todas las facturas...', 'info');
+            setTimeout(() => {
+                showNotification('Archivo ZIP con todas las facturas está listo para descargar', 'success');
+            }, 2500);
+        }
+
+        function contactarContabilidad() {
+            alert('Contactando al departamento de contabilidad...\n\nSe abriría el formulario para solicitudes especiales.');
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Estilos adicionales específicos de historial
+            const style = document.createElement('style');
+            style.textContent = `
+                .maintenance-grid, .invoices-grid, .stats-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 20px;
+                    margin-top: 20px;
+                }
+                
+                .maintenance-card, .invoice-card, .stat-card {
+                    padding: 20px;
+                }
+                
+                .maintenance-header, .invoice-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 15px;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid var(--border-light);
+                }
+                
+                .maintenance-content p, .invoice-content p {
+                    margin: 8px 0;
+                    color: var(--text-medium);
+                }
+                
+                .maintenance-checklist ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 10px 0;
+                }
+                
+                .maintenance-checklist li {
+                    padding: 5px 0;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                
+                .maintenance-actions, .invoice-actions {
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 15px;
+                    padding-top: 15px;
+                    border-top: 1px solid var(--border-light);
+                }
+                
+                .repairs-timeline {
+                    padding: 20px;
+                }
+                
+                .payment-summary {
+                    margin-top: 30px;
+                    padding: 20px;
+                    background: var(--light-bg);
+                    border-radius: 10px;
+                }
+                
+                .summary-stats {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 20px;
+                    margin-top: 20px;
+                }
+                
+                .summary-item {
+                    text-align: center;
+                    padding: 15px;
+                    background: white;
+                    border-radius: 8px;
+                    border: 1px solid var(--border-light);
+                }
+                
+                .summary-label {
+                    font-size: 14px;
+                    color: var(--text-muted);
+                    margin-bottom: 5px;
+                }
+                
+                .summary-value {
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: var(--primary-color);
+                }
+                
+                .export-options {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                }
+                
+                .document-help {
+                    margin-top: 15px;
+                    padding: 15px;
+                    background: rgba(124, 58, 237, 0.05);
+                    border-radius: 8px;
+                    border: 1px solid var(--border-light);
+                }
+                
+                .stat-card {
+                    text-align: center;
+                }
+                
+                .stat-card .stat-number {
+                    font-size: 36px;
+                    font-weight: 700;
+                    color: var(--primary-color);
+                    margin: 10px 0;
+                }
+                
+                .invoice-details {
+                    margin-top: 10px;
+                    padding: 10px;
+                    background: var(--light-bg);
+                    border-radius: 6px;
+                    font-size: 14px;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

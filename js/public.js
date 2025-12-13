@@ -111,7 +111,7 @@ function setupRegistrationForm() {
         alert('¡Registro exitoso! Redirigiendo a su cuenta...');
         
         setTimeout(() => {
-            window.location.href = '../public-index.html';
+            window.location.href = '../cliente-dashboard.html';
         }, 2000);
     });
 }
@@ -174,7 +174,7 @@ function setupLoginForm() {
         alert('Credenciales válidas (simulado). Redirigiendo a su cuenta...');
         
         setTimeout(() => {
-            window.location.href = '../public-index.html';
+            window.location.href = '../cliente-dashboard.html';
         }, 1500);
     });
 }
