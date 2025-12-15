@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Taller Eléctrico Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="public-page">
+    <header class="public-header">
+        <div class="container">
+            <nav class="public-nav">
+                <a href="../public-index.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Taller Eléctrico</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../public-index.html">Inicio</a></li>
+                    <li><a href="public-servicios.html">Servicios</a></li>
+                    <li><a href="public-modelos3d.html">Modelos 3D</a></li>
+                    <li><a href="public-blog.html" class="active">Blog</a></li>
+                    <li><a href="public-contacto.html">Contacto</a></li>
+                    <li><a href="public-login.html" class="btn btn-outline">Ingresar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="public-main">
+        <div class="container">
+            <div class="section-header">
+                <h1><i class="fas fa-blog"></i> Blog de Mantenimiento</h1>
+                <p>Consejos, guías y novedades sobre motores eléctricos y mantenimiento industrial.</p>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card card-enhanced">
+                    <img src="../assets/blog-bobinado.jpg" alt="Bobinado" class="blog-thumb" onerror="this.style.display='none'">
+                    <div class="blog-content">
+                        <h3>5 señales de que su motor necesita rebobinado</h3>
+                        <p class="meta">12 Nov 2024 • Técnico - Diagnóstico</p>
+                        <p>Vibraciones inusuales, sobrecalentamiento y ruidos son algunos de los indicadores que debemos tomar en cuenta.</p>
+                        <a href="public-blog.html#post1" class="text-link">Leer más</a>
+                    </div>
+                </article>
+
+                <article class="blog-card card-enhanced">
+                    <img src="../assets/blog-mantenimiento.jpg" alt="Mantenimiento" class="blog-thumb" onerror="this.style.display='none'">
+                    <div class="blog-content">
+                        <h3>Checklist de mantenimiento preventivo para motores eléctricos</h3>
+                        <p class="meta">01 Oct 2024 • Mantenimiento</p>
+                        <p>Una lista práctica para programar mantenimientos que reduzcan el riesgo de fallas inesperadas.</p>
+                        <a href="public-blog.html#post2" class="text-link">Leer más</a>
+                    </div>
+                </article>
+
+                <article class="blog-card card-enhanced">
+                    <img src="../assets/blog-vibraciones.jpg" alt="Vibraciones" class="blog-thumb" onerror="this.style.display='none'">
+                    <div class="blog-content">
+                        <h3>Cómo interpretar un análisis de vibraciones</h3>
+                        <p class="meta">15 Sep 2024 • Diagnóstico</p>
+                        <p>Conceptos clave para entender los resultados y las acciones correctivas recomendadas por el técnico.</p>
+                        <a href="public-blog.html#post3" class="text-link">Leer más</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blog-sidebar">
+                <div class="card-enhanced">
+                    <h4>Buscar en el blog</h4>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input id="blogSearch" type="text" placeholder="Buscar artículos...">
+                    </div>
+                </div>
+
+                <div class="card-enhanced">
+                    <h4>Categorías</h4>
+                    <ul class="card-enhanced">
+                        <li><a href="#">Diagnóstico</a></li>
+                        <li><a href="#">Mantenimiento</a></li>
+                        <li><a href="#">Bobinado</a></li>
+                        <li><a href="#">Novedades</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="public-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-tools"></i> Taller Eléctrico Mecánico</h4>
+                    <p>Especialistas en reparación y mantenimiento de motores eléctricos desde 1995.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> San José, Costa Rica</p>
+                    <p><i class="fas fa-phone"></i> (506) 2222-5555</p>
+                    <p><i class="fas fa-envelope"></i> info@tallerelectrico.com</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="public-servicios.html">Servicios</a></li>
+                        <li><a href="public-modelos3d.html">Modelos 3D</a></li>
+                        <li><a href="public-blog.html">Blog de Mantenimiento</a></li>
+                        <li><a href="public-contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> Taller Eléctrico Mecánico. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/public.js"></script>
+    <script>
+        // simple client-side filter for blog preview cards
+        document.getElementById('blogSearch')?.addEventListener('input', function () {
+            const term = this.value.toLowerCase();
+            document.querySelectorAll('.blog-card').forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

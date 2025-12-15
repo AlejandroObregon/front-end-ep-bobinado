@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelos 3D - Taller Eléctrico Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="public-page">
+    <header class="public-header">
+        <div class="container">
+            <nav class="public-nav">
+                <a href="../public-index.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Taller Eléctrico</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../public-index.html">Inicio</a></li>
+                    <li><a href="public-servicios.html">Servicios</a></li>
+                    <li><a href="public-modelos3d.html" class="active">Modelos 3D</a></li>
+                    <li><a href="public-blog.html">Blog</a></li>
+                    <li><a href="public-contacto.html">Contacto</a></li>
+                    <li><a href="public-login.html" class="btn btn-outline">Ingresar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="public-main">
+        <div class="container">
+            <div class="section-header">
+                <h1><i class="fas fa-cube"></i> Modelos 3D de Motores</h1>
+                <p>Explore modelos 3D de motores para inspección técnica y referencia.</p>
+            </div>
+
+            <div class="models-grid">
+                <div class="model-card card-enhanced">
+                    <div class="model-view" style="height:200px; display:flex; align-items:center; justify-content:center; background:var(--bg-light);">
+                        <i class="fas fa-cube fa-3x" style="color:var(--primary-color)"></i>
+                    </div>
+                    <div class="model-body">
+                        <h4>SIEMENS 20HP</h4>
+                        <p>Modelo 3D básico para visualización y mediciones preliminares.</p>
+                        <a href="#" class="btn btn-outline" onclick="showNotification('Abrir visor 3D (demo)', 'info');">Abrir visor</a>
+                        <a href="#" class="btn btn-primary" onclick="showNotification('Descargando modelo 3D...', 'info'); setTimeout(()=>showNotification('Descarga completada', 'success'),1000);">Descargar</a>
+                    </div>
+                </div>
+
+                <div class="model-card card-enhanced">
+                    <div class="model-view" style="height:200px; display:flex; align-items:center; justify-content:center; background:var(--bg-light);">
+                        <i class="fas fa-cogs fa-3x" style="color:var(--primary-color)"></i>
+                    </div>
+                    <div class="model-body">
+                        <h4>WEG 5HP</h4>
+                        <p>Modelo apto para planificación de reparaciones y ajustes mecánicos.</p>
+                        <a href="#" class="btn btn-outline" onclick="showNotification('Abrir visor 3D (demo)', 'info');">Abrir visor</a>
+                        <a href="#" class="btn btn-primary" onclick="showNotification('Descargando modelo 3D...', 'info'); setTimeout(()=>showNotification('Descarga completada', 'success'),1000);">Descargar</a>
+                    </div>
+                </div>
+
+                <div class="model-card card-enhanced">
+                    <div class="model-view" style="height:200px; display:flex; align-items:center; justify-content:center; background:var(--bg-light);">
+                        <i class="fas fa-industry fa-3x" style="color:var(--primary-color)"></i>
+                    </div>
+                    <div class="model-body">
+                        <h4>ABB 10HP</h4>
+                        <p>Modelo con capas para identificar bobinado, carcasa y eje.</p>
+                        <a href="#" class="btn btn-outline" onclick="showNotification('Abrir visor 3D (demo)', 'info');">Abrir visor</a>
+                        <a href="#" class="btn btn-primary" onclick="showNotification('Descargando modelo 3D...', 'info'); setTimeout(()=>showNotification('Descarga completada', 'success'),1000);">Descargar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:24px; text-align:center;">
+                <p class="text-muted">Si requiere el modelo 3D de un equipo específico, contáctenos en <a href="public-contacto.html">Contacto</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="public-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-tools"></i> Taller Eléctrico Mecánico</h4>
+                    <p>Especialistas en reparación y mantenimiento de motores eléctricos desde 1995.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> San José, Costa Rica</p>
+                    <p><i class="fas fa-phone"></i> (506) 2222-5555</p>
+                    <p><i class="fas fa-envelope"></i> info@tallerelectrico.com</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="public-servicios.html">Servicios</a></li>
+                        <li><a href="public-modelos3d.html">Modelos 3D</a></li>
+                        <li><a href="public-blog.html">Blog de Mantenimiento</a></li>
+                        <li><a href="public-contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> Taller Eléctrico Mecánico. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/public.js"></script>
+</body>
+</html>

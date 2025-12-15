@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Taller Eléctrico Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="public-page">
+    <header class="public-header">
+        <div class="container">
+            <nav class="public-nav">
+                <a href="../public-index.html" class="logo">
+                    <i class="fas fa-tools"></i>
+                    <span>Taller Eléctrico</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../public-index.html">Inicio</a></li>
+                    <li><a href="public-servicios.html">Servicios</a></li>
+                    <li><a href="public-modelos3d.html">Modelos 3D</a></li>
+                    <li><a href="public-blog.html">Blog</a></li>
+                    <li><a href="public-contacto.html" class="active">Contacto</a></li>
+                    <li><a href="public-login.html" class="btn btn-outline">Ingresar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="public-main">
+        <div class="container">
+            <div class="section-header">
+                <h1><i class="fas fa-envelope"></i> Contáctenos</h1>
+                <p>Estamos para ayudarle. Complete el formulario o use los datos de contacto directos.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-form card-enhanced">
+                    <h3>Envíenos un mensaje</h3>
+                    <form id="contactForm" class="public-form">
+                        <div class="form-group">
+                            <label for="contactName">Nombre *</label>
+                            <input type="text" id="contactName" name="name" placeholder="Su nombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactEmail">Correo Electrónico *</label>
+                            <input type="email" id="contactEmail" name="email" placeholder="ejemplo@correo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPhone">Teléfono</label>
+                            <input type="tel" id="contactPhone" name="phone" placeholder="2222-5555">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactService">Servicio de interés</label>
+                            <select id="contactService" name="service">
+                                <option value="">Seleccione</option>
+                                <option value="bobinado">Bobinado</option>
+                                <option value="mantenimiento">Mantenimiento</option>
+                                <option value="diagnostico">Diagnóstico</option>
+                                <option value="reparacion">Reparación</option>
+                                <option value="venta">Venta</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">Mensaje *</label>
+                            <textarea id="contactMessage" name="message" rows="5" placeholder="Describa su solicitud" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                <i class="fas fa-paper-plane"></i> Enviar mensaje
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <div class="card-enhanced">
+                        <h3><i class="fas fa-phone-alt"></i> Datos de contacto</h3>
+                        <p><strong>Teléfono:</strong> (506) 2222-5555</p>
+                        <p><strong>Email:</strong> info@tallerelectrico.com</p>
+                        <p><strong>Dirección:</strong> San José, Costa Rica</p>
+                        <p><strong>Horario:</strong> Lun-Vie 7:00 AM - 5:00 PM | Sábados 7:00 AM - 12:00 PM</p>
+                        <a href="tel:+50622225555" class="btn btn-primary"><i class="fas fa-phone"></i> Llamar ahora</a>
+                    </div>
+
+                    <div class="card-enhanced">
+                        <h3><i class="fas fa-map-marker-alt"></i> Visítenos</h3>
+                        <div class="map-placeholder" style="height:240px; background:var(--bg-light); display:flex; align-items:center; justify-content:center; color:var(--text-muted);">
+                            Mapa (integración opcional con Google Maps)
+                        </div>
+                        <p style="margin-top:12px; font-size:14px; color:var(--text-medium);">
+                            Si desea que lo recojamos, indíquelo en el mensaje y coordinaremos la logística.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="public-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-tools"></i> Taller Eléctrico Mecánico</h4>
+                    <p>Especialistas en reparación y mantenimiento de motores eléctricos desde 1995.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> San José, Costa Rica</p>
+                    <p><i class="fas fa-phone"></i> (506) 2222-5555</p>
+                    <p><i class="fas fa-envelope"></i> info@tallerelectrico.com</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="public-servicios.html">Servicios</a></li>
+                        <li><a href="public-modelos3d.html">Modelos 3D</a></li>
+                        <li><a href="public-blog.html">Blog de Mantenimiento</a></li>
+                        <li><a href="public-contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> Taller Eléctrico Mecánico. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/public.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            showNotification('Enviando mensaje...', 'info');
+            setTimeout(() => showNotification('Mensaje enviado. Le responderemos pronto.', 'success'), 900);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
