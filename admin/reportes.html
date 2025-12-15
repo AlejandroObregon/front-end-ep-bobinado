@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reportes - Sistema Taller Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="logo">
+            <i class="fas fa-tools"></i>
+            <span>Taller Manager</span>
+        </div>
+
+        <div class="user-info">
+            <span>Bienvenido, <strong>Admin</strong></span>
+            <a href="notificaciones.html" class="btn-notify" title="Notificaciones" style="color: #ecf0f1; padding:8px 12px; border-radius:6px;">
+                <i class="fas fa-bell"></i>
+            </a>
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul class="nav-menu">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="clientes.html">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
+            <li>
+                <a href="motores.html">
+                    <i class="fas fa-cogs"></i> Motores
+                </a>
+            </li>
+            <li>
+                <a href="ordenes.html">
+                    <i class="fas fa-clipboard-list"></i> Órdenes
+                </a>
+            </li>
+            <li>
+                <a href="inventario.html">
+                    <i class="fas fa-boxes"></i> Inventario
+                </a>
+            </li>
+            <li>
+                <a href="finanzas.html">
+                    <i class="fas fa-dollar-sign"></i> Finanzas
+                </a>
+            </li>
+            <li class="active">
+                <a href="reportes.html">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+            </li>
+            <li>
+                <a href="configuracion.html">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-chart-bar"></i> Reportes</h1>
+            <p class="text-muted">Generador y vista de reportes del taller</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div style="display:flex;gap:10px;">
+                        <button class="tab-btn active" data-tab="reportSales">Ventas</button>
+                        <button class="tab-btn" data-tab="reportStock">Stock</button>
+                        <button class="tab-btn" data-tab="reportOrders">Órdenes</button>
+                    </div>
+
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <select id="reportPeriod" style="padding:8px;border-radius:6px;border:1px solid #ddd;">
+                            <option value="month" selected>Último mes</option>
+                            <option value="quarter">Trimestre</option>
+                            <option value="year">Año</option>
+                        </select>
+                        <button class="btn btn-primary" id="exportReport"><i class="fas fa-file-export"></i> Exportar</button>
+                    </div>
+                </div>
+
+                <div id="reportContents" style="margin-top:16px;">
+                    <div id="reportSales" class="tab-content active">
+                        <h4>Ventas - Vista rápida</h4>
+                        <!-- Aquí colocamos un canvas para dibujar el gráfico -->
+                        <div style="height:320px;border:1px dashed #ddd;border-radius:8px;padding:12px;display:flex;flex-direction:column;">
+                            <canvas id="salesChart" width="800" height="260" style="max-width:100%;height:260px;"></canvas>
+                            <div style="display:flex;justify-content:space-between;margin-top:8px;color:var(--text-medium);font-size:13px;">
+                                <div id="salesSummary">Cargando datos...</div>
+                                <div id="salesRange">Rango: Últimos 12 meses</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:12px;">
+                            <button class="btn btn-outline" id="salesBreakdownBtn">Desglose</button>
+                            <button class="btn btn-primary" id="salesDownloadBtn">Descargar</button>
+                        </div>
+                    </div>
+
+                    <div id="reportStock" class="tab-content">
+                        <h4>Stock - Alertas</h4>
+                        <div style="display:grid;grid-template-columns:1fr 300px;gap:16px;">
+                            <div style="border:1px dashed #ddd;padding:12px;border-radius:8px;">
+                                <p style="color:var(--text-medium);">Lista de ítems con bajo stock y consumo por período.</p>
+                                <ul style="margin-top:8px;color:var(--text-medium);">
+                                    <li>Rodamiento 6206 - Consumo 15/mes - Stock actual: 2</li>
+                                    <li>Corona 18 dientes - Consumo 3/mes - Stock actual: 0</li>
+                                </ul>
+                            </div>
+                            <aside style="border:1px dashed #ddd;padding:12px;border-radius:8px;">
+                                <h5>Acciones</h5>
+                                <button class="btn btn-primary" onclick="showNotification('Generando plan de compra (simulado)...','info')">Plan de compra</button>
+                            </aside>
+                        </div>
+                    </div>
+
+                    <div id="reportOrders" class="tab-content">
+                        <h4>Órdenes - Tendencias</h4>
+                        <div style="height:260px;border:1px dashed #ddd;border-radius:8px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                            <canvas id="ordersChart" width="600" height="200" style="max-width:100%;height:200px;"></canvas>
+                            <div style="margin-top:12px;">
+                                <button class="btn btn-outline" id="ordersFilterBtn">Filtrar</button>
+                            </div>
+                        </div>
+                        <div style="margin-top:12px;">
+                            <button class="btn btn-outline" onclick="showNotification('Filtrando órdenes por tendencia (simulado)...','info')">Filtrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="admin-footer">
+        <p>Sistema de Gestión de Taller © 2024 | Reportes</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    /* ======================
+       TABS
+    ======================*/
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const tabId = this.dataset.tab;
+
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            this.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+
+    /* ======================
+       DATOS SIMULADOS
+    ======================*/
+    const salesLabels = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    const salesValues = [1200000,980000,1400000,1600000,1500000,1700000,1800000,1750000,1650000,1900000,2100000,2300000];
+
+    const ordersLabels = ['Ene','Feb','Mar','Abr','May','Jun'];
+    const ordersValues = [45,38,52,61,57,68];
+
+    /* ======================
+       GRÁFICO DE VENTAS
+    ======================*/
+    const salesChart = new Chart(document.getElementById('salesChart'), {
+        type: 'line',
+        data: {
+            labels: salesLabels,
+            datasets: [{
+                label: 'Ventas ₡',
+                data: salesValues,
+                fill: true,
+                borderColor: '#2980b9',
+                backgroundColor: 'rgba(52,152,219,0.25)',
+                tension: 0.35,
+                pointRadius: 4,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#2980b9'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        callback: value => '₡' + value.toLocaleString('es-CR')
+                    }
+                }
+            }
+        }
+    });
+
+    /* ======================
+       RESUMEN DE VENTAS
+    ======================*/
+    const total = salesValues.reduce((a,b) => a + b, 0);
+    const avg = Math.round(total / salesValues.length);
+    document.getElementById('salesSummary').innerHTML =
+        `Total: ₡${total.toLocaleString('es-CR')} | Promedio mensual: ₡${avg.toLocaleString('es-CR')}`;
+
+    /* ======================
+       GRÁFICO DE ÓRDENES
+    ======================*/
+    const ordersChart = new Chart(document.getElementById('ordersChart'), {
+        type: 'bar',
+        data: {
+            labels: ordersLabels,
+            datasets: [{
+                label: 'Órdenes',
+                data: ordersValues,
+                backgroundColor: '#27ae60'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+
+    /* ======================
+       ACCIONES
+    ======================*/
+    document.getElementById('exportReport').onclick = () =>
+        showNotification('Reporte exportado (simulado)', 'success');
+
+    document.getElementById('salesDownloadBtn').onclick = () =>
+        showNotification('Descargando ventas (simulado)', 'success');
+
+    document.getElementById('salesBreakdownBtn').onclick = () =>
+        showNotification('Desglose de ventas (simulado)', 'info');
+
+    document.getElementById('ordersFilterBtn').onclick = () =>
+        showNotification('Filtro aplicado (simulado)', 'info');
+});
+</script>
+

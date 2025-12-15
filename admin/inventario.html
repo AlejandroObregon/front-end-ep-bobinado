@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inventario - Sistema Taller Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="logo">
+            <i class="fas fa-tools"></i>
+            <span>Taller Manager</span>
+        </div>
+
+        <div class="user-info">
+            <span>Bienvenido, <strong>Admin</strong></span>
+            <a href="notificaciones.html" class="btn-notify" title="Notificaciones" style="color: #ecf0f1; padding:8px 12px; border-radius:6px;">
+                <i class="fas fa-bell"></i>
+            </a>
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul class="nav-menu">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="clientes.html">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
+            <li>
+                <a href="motores.html">
+                    <i class="fas fa-cogs"></i> Motores
+                </a>
+            </li>
+            <li>
+                <a href="ordenes.html">
+                    <i class="fas fa-clipboard-list"></i> Órdenes
+                </a>
+            </li>
+            <li class="active">
+                <a href="inventario.html">
+                    <i class="fas fa-boxes"></i> Inventario
+                </a>
+            </li>
+            <li>
+                <a href="finanzas.html">
+                    <i class="fas fa-dollar-sign"></i> Finanzas
+                </a>
+            </li>
+            <li>
+                <a href="reportes.html">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+            </li>
+            <li>
+                <a href="configuracion.html">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-boxes"></i> Inventario</h1>
+            <p class="text-muted">Gestión de stock, alertas y movimientos de almacén</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <a href="inventario-nuevo.html" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Nuevo ítem</a>
+                        <button class="btn btn-outline" id="restockAll"><i class="fas fa-truck-loading"></i> Reabastecer</button>
+                    </div>
+
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <input class="search-input" placeholder="Buscar ítem, referencia..." style="padding:8px;border:1px solid #ddd;border-radius:6px;">
+                        <select id="filterStock" style="padding:8px;border-radius:6px;border:1px solid #ddd;">
+                            <option value="all">Todos</option>
+                            <option value="low">Bajo stock</option>
+                            <option value="out">Agotado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top:16px;">
+                    <table class="data-table" id="inventoryTable">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Stock</th>
+                                <th>Ubicación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-stock="25">
+                                <td>RB-6205</td>
+                                <td>Rodamiento 6205-ZZ</td>
+                                <td>Rodamiento</td>
+                                <td>25</td>
+                                <td>Estante A2</td>
+                                <td>
+                                    <button class="btn btn-outline btn-sm" onclick="showNotification('Mover ítem (simulado)...','info')">Mover</button>
+                                    <button class="btn btn-outline btn-sm" onclick="showNotification('Editar ítem (simulado)...','info')">Editar</button>
+                                </td>
+                            </tr>
+                            <tr data-stock="2">
+                                <td>RB-6206</td>
+                                <td>Rodamiento 6206-ZZ</td>
+                                <td>Rodamiento</td>
+                                <td><span style="color:#e67e22;font-weight:700;">2</span></td>
+                                <td>Estante A3</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" onclick="showNotification('Solicitud de compra creada (simulado)...','info')">Solicitar</button>
+                                </td>
+                            </tr>
+                            <tr data-stock="0">
+                                <td>CO-1234</td>
+                                <td>Corona 18 dientes</td>
+                                <td>Repuesto</td>
+                                <td><span class="badge bg-danger">0</span></td>
+                                <td>Estante B1</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" onclick="showNotification('Creando orden de compra (simulado)...','info')">Ordenar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Indicador rápido -->
+                <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
+                    <div style="color:var(--text-medium);font-size:14px;">Total ítems: <strong>124</strong></div>
+                    <div>
+                        <button class="btn btn-outline" onclick="showNotification('Exportando inventario (simulado)...','info')"><i class="fas fa-file-export"></i> Exportar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="admin-footer">
+        <p>Sistema de Gestión de Taller © 2024 | Inventario</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Filtro de stock básico
+            document.getElementById('filterStock').addEventListener('change', function () {
+                const mode = this.value;
+                const rows = document.querySelectorAll('#inventoryTable tbody tr');
+                rows.forEach(r => {
+                    const stock = parseInt(r.getAttribute('data-stock') || '0', 10);
+                    if (mode === 'all') r.style.display = '';
+                    else if (mode === 'low') r.style.display = stock > 0 && stock <= 5 ? '' : 'none';
+                    else if (mode === 'out') r.style.display = stock === 0 ? '' : 'none';
+                });
+                showNotification('Filtro aplicado: ' + this.options[this.selectedIndex].text, 'info');
+            });
+
+            // Reabastecer (simulado)
+            document.getElementById('restockAll').addEventListener('click', function () {
+                showNotification('Reabastecimiento iniciado (simulado)...', 'info');
+                setTimeout(() => showNotification('Reabastecimiento completado', 'success'), 1200);
+            });
+        });
+    </script>
+</body>
+</html>
