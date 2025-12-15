@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Configuración - Sistema Taller Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="logo">
+            <i class="fas fa-tools"></i>
+            <span>Taller Manager</span>
+        </div>
+
+        <div class="user-info">
+            <span>Bienvenido, <strong>Admin</strong></span>
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul class="nav-menu">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="clientes.html">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
+            <li>
+                <a href="motores.html">
+                    <i class="fas fa-cogs"></i> Motores
+                </a>
+            </li>
+            <li>
+                <a href="ordenes.html">
+                    <i class="fas fa-clipboard-list"></i> Órdenes
+                </a>
+            </li>
+            <li>
+                <a href="inventario.html">
+                    <i class="fas fa-boxes"></i> Inventario
+                </a>
+            </li>
+            <li>
+                <a href="finanzas.html">
+                    <i class="fas fa-dollar-sign"></i> Finanzas
+                </a>
+            </li>
+            <li>
+                <a href="reportes.html">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+            </li>
+            <li class="active">
+                <a href="configuracion.html">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-cog"></i> Configuración del Sistema</h1>
+            <p class="text-muted">Ajustes generales del taller, notificaciones y usuarios</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <form id="settingsForm">
+                    <div style="display:grid;grid-template-columns:1fr 350px;gap:20px;">
+                        <div>
+                            <h3>Información del Taller</h3>
+                            <div class="form-group">
+                                <label for="companyName">Nombre del taller</label>
+                                <input id="companyName" type="text" value="Taller Eléctrico Mecánico" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="companyEmail">Email de contacto</label>
+                                <input id="companyEmail" type="email" value="info@tallerelectrico.com" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="companyPhone">Teléfono</label>
+                                <input id="companyPhone" type="text" value="2222-5555" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="businessHours">Horario atención</label>
+                                <input id="businessHours" type="text" value="Lun-Vie 7:00 - 17:00 / Sáb 7:00 - 12:00" />
+                            </div>
+
+                            <h3 style="margin-top:20px;">Notificaciones</h3>
+                            <div class="form-group">
+                                <label>
+                                    <input id="notifyOrders" type="checkbox" checked />
+                                    Notificar por nuevo pedido
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input id="notifyStock" type="checkbox" checked />
+                                    Alertas de stock bajo
+                                </label>
+                            </div>
+
+                            <h3 style="margin-top:20px;">Usuarios & Roles</h3>
+                            <p style="color:var(--text-medium);font-size:14px;">Gestione usuarios desde el módulo de administración de usuarios (no implementado en esta demo).</p>
+
+                            <div style="margin-top:20px;">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar cambios</button>
+                                <button type="button" class="btn btn-outline" onclick="showNotification('Restaurando valores predeterminados (simulado)...','info')">Restablecer</button>
+                            </div>
+                        </div>
+
+                        <aside>
+                            <div class="card" style="padding:16px;">
+                                <h4>Backup & Mantenimiento</h4>
+                                <p style="color:var(--text-medium);font-size:14px;">Programar respaldos automáticos y tareas de mantenimiento del sistema.</p>
+                                <div style="display:flex;gap:10px;margin-top:12px;">
+                                    <button class="btn btn-outline" onclick="showNotification('Iniciando backup (simulado)...','info')">Hacer backup</button>
+                                    <button class="btn btn-primary" onclick="showNotification('Ver historial de tasks (simulado)...','info')">Ver tasks</button>
+                                </div>
+                            </div>
+
+                            <div class="card" style="padding:16px;margin-top:12px;">
+                                <h4>Versión</h4>
+                                <p>v1.0.0</p>
+                                <p style="color:var(--text-medium);font-size:13px;">Última actualización: 2024-01-10</p>
+                            </div>
+                        </aside>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="admin-footer">
+        <p>Sistema de Gestión de Taller © 2024 | Configuración</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.getElementById('settingsForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            showNotification('Guardando configuración...', 'info');
+            setTimeout(() => showNotification('Configuración guardada correctamente', 'success'), 1000);
+        });
+    </script>
+</body>
+</html>

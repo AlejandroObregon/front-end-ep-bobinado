@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notificaciones - Sistema Taller Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="logo">
+            <i class="fas fa-tools"></i>
+            <span>Taller Manager</span>
+        </div>
+
+        <div class="user-info">
+            <span>Bienvenido, <strong>Admin</strong></span>
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul class="nav-menu">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="clientes.html">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
+            <li>
+                <a href="motores.html">
+                    <i class="fas fa-cogs"></i> Motores
+                </a>
+            </li>
+            <li>
+                <a href="ordenes.html">
+                    <i class="fas fa-clipboard-list"></i> Órdenes
+                </a>
+            </li>
+            <li>
+                <a href="inventario.html">
+                    <i class="fas fa-boxes"></i> Inventario
+                </a>
+            </li>
+            <li>
+                <a href="finanzas.html">
+                    <i class="fas fa-dollar-sign"></i> Finanzas
+                </a>
+            </li>
+            <li>
+                <a href="reportes.html">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+            </li>
+            <li>
+                <a href="configuracion.html">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-bell"></i> Notificaciones</h1>
+            <p class="text-muted">Histórico y gestión de notificaciones del sistema</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>
+                        <button class="btn btn-outline" id="markReadBtn"><i class="fas fa-check-double"></i> Marcar todas leídas</button>
+                        <button class="btn btn-outline" id="clearBtn"><i class="fas fa-trash-alt"></i> Limpiar</button>
+                    </div>
+                    <div>
+                        <select id="filterNoti">
+                            <option value="all">Todas</option>
+                            <option value="info">Info</option>
+                            <option value="warning">Alerta</option>
+                            <option value="urgent">Urgente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top:16px;" id="notiList">
+                    <div class="activity-item" style="display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--border-light);border-radius:8px;margin-bottom:10px;">
+                        <div style="width:40px;height:40px;background:#3498db;color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-info-circle"></i></div>
+                        <div style="flex:1;">
+                            <div style="font-weight:700;">Actualización de Orden ORD-2024-0015</div>
+                            <div style="color:var(--text-medium);font-size:13px;">Motor SI-2020-4587 pasó a pruebas finales</div>
+                            <div style="color:var(--text-muted);font-size:12px;margin-top:6px;">Hace 2 horas</div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:6px;">
+                            <button class="btn btn-outline btn-sm" onclick="showNotification('Abriendo orden (simulado)...','info')">Ver</button>
+                            <button class="btn btn-outline btn-sm" onclick="this.closest('.activity-item').remove(); showNotification('Notificación eliminada','success')">Eliminar</button>
+                        </div>
+                    </div>
+
+                    <div class="activity-item" style="display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--border-light);border-radius:8px;margin-bottom:10px;">
+                        <div style="width:40px;height:40px;background:#f39c12;color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div style="flex:1;">
+                            <div style="font-weight:700;">Stock bajo: Rodamientos 6205</div>
+                            <div style="color:var(--text-medium);font-size:13px;">Nivel crítico en inventario - 2 unidades restantes</div>
+                            <div style="color:var(--text-muted);font-size:12px;margin-top:6px;">Hace 4 horas</div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:6px;">
+                            <button class="btn btn-outline btn-sm" onclick="showNotification('Abrir inventario (simulado)...','info')">Ver</button>
+                            <button class="btn btn-outline btn-sm" onclick="this.closest('.activity-item').remove(); showNotification('Notificación eliminada','success')">Eliminar</button>
+                        </div>
+                    </div>
+
+                    <div class="activity-item" style="display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--border-light);border-radius:8px;margin-bottom:10px;">
+                        <div style="width:40px;height:40px;background:#27ae60;color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-check-circle"></i></div>
+                        <div style="flex:1;">
+                            <div style="font-weight:700;">Orden ORD-1024 completada</div>
+                            <div style="color:var(--text-medium);font-size:13px;">Factura FAC-2024-0012 generada</div>
+                            <div style="color:var(--text-muted);font-size:12px;margin-top:6px;">Ayer</div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:6px;">
+                            <button class="btn btn-outline btn-sm" onclick="showNotification('Descargando factura (simulado)...','info')">Descargar</button>
+                            <button class="btn btn-outline btn-sm" onclick="this.closest('.activity-item').remove(); showNotification('Notificación eliminada','success')">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="admin-footer">
+        <p>Sistema de Gestión de Taller © 2024 | Notificaciones</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('markReadBtn').addEventListener('click', function () {
+                document.querySelectorAll('#notiList .activity-item').forEach(it => it.style.opacity = '0.6');
+                showNotification('Todas las notificaciones marcadas como leídas (simulado).', 'success');
+            });
+
+            document.getElementById('clearBtn').addEventListener('click', function () {
+                if (!confirm('¿Desea limpiar todas las notificaciones?')) return;
+                document.getElementById('notiList').innerHTML = '';
+                showNotification('Notificaciones eliminadas (simulado).', 'warning');
+            });
+
+            document.getElementById('filterNoti').addEventListener('change', function () {
+                showNotification('Filtrando notificaciones: ' + this.value, 'info');
+                // in this demo filtering is simulated; real implementation would query backend
+            });
+        });
+    </script>
+</body>
+</html>

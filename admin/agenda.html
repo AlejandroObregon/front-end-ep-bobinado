@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agenda - Sistema Taller Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="logo">
+            <i class="fas fa-tools"></i>
+            <span>Taller Manager</span>
+        </div>
+
+        <div class="user-info">
+            <span>Bienvenido, <strong>Admin</strong></span>
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul class="nav-menu">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="clientes.html">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
+            <li>
+                <a href="motores.html">
+                    <i class="fas fa-cogs"></i> Motores
+                </a>
+            </li>
+            <li>
+                <a href="ordenes.html">
+                    <i class="fas fa-clipboard-list"></i> Órdenes
+                </a>
+            </li>
+            <li>
+                <a href="inventario.html">
+                    <i class="fas fa-boxes"></i> Inventario
+                </a>
+            </li>
+            <li>
+                <a href="finanzas.html">
+                    <i class="fas fa-dollar-sign"></i> Finanzas
+                </a>
+            </li>
+            <li>
+                <a href="reportes.html">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+            </li>
+            <li>
+                <a href="configuracion.html">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-calendar-alt"></i> Agenda y Citas</h1>
+            <p class="text-muted">Vista rápida de visitas, inspecciones y agendamientos</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div style="display:flex;gap:20px;align-items:center;justify-content:space-between;">
+                    <div style="display:flex;gap:10px;align-items:center;">
+                        <button class="btn btn-outline" id="prevDay"><i class="fas fa-chevron-left"></i></button>
+                        <div id="agendaDate" style="font-weight:700;">Hoy</div>
+                        <button class="btn btn-outline" id="nextDay"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <div style="display:flex;gap:10px;">
+                        <a href="agenda-nueva.html" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Nueva cita</a>
+                        <button class="btn btn-outline" id="refreshAgenda"><i class="fas fa-sync-alt"></i> Actualizar</button>
+                    </div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:300px 1fr;gap:20px;margin-top:20px;">
+                    <div>
+                        <h4>Próximas citas</h4>
+                        <div class="appointment-list">
+                            <div class="activity-item" style="display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--border-light);border-radius:8px;margin-bottom:10px;">
+                                <div style="width:44px;height:44px;background:#3498db;color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-truck"></i></div>
+                                <div>
+                                    <div style="font-weight:700;">Inspección - Industrias Pérez</div>
+                                    <div style="color:var(--text-medium);font-size:13px;">20 Feb 2024 • 09:00 - 10:00</div>
+                                    <div style="color:var(--text-medium);font-size:13px;">Técnico: Carlos Vargas</div>
+                                </div>
+                            </div>
+
+                            <div class="activity-item" style="display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--border-light);border-radius:8px;margin-bottom:10px;">
+                                <div style="width:44px;height:44px;background:#27ae60;color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-calendar-check"></i></div>
+                                <div>
+                                    <div style="font-weight:700;">Entrega ORD-1024</div>
+                                    <div style="color:var(--text-medium);font-size:13px;">20 Feb 2024 • 11:30 - 12:00</div>
+                                    <div style="color:var(--text-medium);font-size:13px;">Contacto: Juan Pérez</div>
+                                </div>
+                            </div>
+
+                            <div class="activity-item" style="display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--border-light);border-radius:8px;margin-bottom:10px;">
+                                <div style="width:44px;height:44px;background:#f39c12;color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-tools"></i></div>
+                                <div>
+                                    <div style="font-weight:700;">Mantenimiento ABB-2019-1234</div>
+                                    <div style="color:var(--text-medium);font-size:13px;">21 Feb 2024 • 08:00 - 10:00</div>
+                                    <div style="color:var(--text-medium);font-size:13px;">Técnico: Ana Rodríguez</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4>Horario del día</h4>
+                        <div style="border:1px solid var(--border-light);padding:12px;border-radius:8px;">
+                            <div style="display:grid;gap:10px;">
+                                <div style="display:flex;justify-content:space-between;"><div>08:00</div><div><span class="badge bg-info">Libre</span></div></div>
+                                <div style="display:flex;justify-content:space-between;"><div>09:00</div><div><span class="badge bg-primary">Inspección</span></div></div>
+                                <div style="display:flex;justify-content:space-between;"><div>10:00</div><div><span class="badge bg-success">En ruta</span></div></div>
+                                <div style="display:flex;justify-content:space-between;"><div>11:00</div><div><span class="badge bg-warning">Entrega</span></div></div>
+                                <div style="display:flex;justify-content:space-between;"><div>12:00</div><div><span class="badge bg-secondary">Almuerzo</span></div></div>
+                                <div style="display:flex;justify-content:space-between;"><div>13:00</div><div><span class="badge bg-info">Libre</span></div></div>
+                                <div style="display:flex;justify-content:space-between;"><div>14:00</div><div><span class="badge bg-info">Libre</span></div></div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:12px;">
+                            <button class="btn btn-outline" onclick="showNotification('Descargando agenda (simulado)...', 'info')"><i class="fas fa-download"></i> Exportar día</button>
+                            <button class="btn btn-primary" style="margin-left:8px;" onclick="showNotification('Abriendo formulario nueva cita (simulado)...', 'info')"><i class="fas fa-plus"></i> Nueva cita</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="admin-footer">
+        <p>Sistema de Gestión de Taller © 2024 | Agenda</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dateEl = document.getElementById('agendaDate');
+            const now = new Date();
+            function renderDate(offset = 0) {
+                const d = new Date(now);
+                d.setDate(now.getDate() + offset);
+                dateEl.textContent = d.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            }
+            let offset = 0;
+            renderDate();
+
+            document.getElementById('prevDay').addEventListener('click', () => { offset -= 1; renderDate(offset); });
+            document.getElementById('nextDay').addEventListener('click', () => { offset += 1; renderDate(offset); });
+            document.getElementById('refreshAgenda').addEventListener('click', () => showNotification('Actualizando agenda (simulado)...', 'info'));
+        });
+    </script>
+</body>
+</html>
