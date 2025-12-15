@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Cliente - Sistema Taller Mecánico</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="logo">
+            <i class="fas fa-tools"></i>
+            <span>Taller Manager</span>
+        </div>
+
+        <div class="user-info">
+            <span>Bienvenido, <strong>Admin</strong></span>
+            <a href="notificaciones.html" class="btn-notify" title="Notificaciones" style="color: #ecf0f1; padding:8px 12px; border-radius:6px;">
+                <i class="fas fa-bell"></i>
+            </a>
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul class="nav-menu">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li class="active">
+                <a href="clientes.html">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
+            <li>
+                <a href="motores.html">
+                    <i class="fas fa-cogs"></i> Motores
+                </a>
+            </li>
+            <li>
+                <a href="ordenes.html">
+                    <i class="fas fa-clipboard-list"></i> Órdenes
+                </a>
+            </li>
+            <li>
+                <a href="inventario.html">
+                    <i class="fas fa-boxes"></i> Inventario
+                </a>
+            </li>
+            <li>
+                <a href="finanzas.html">
+                    <i class="fas fa-dollar-sign"></i> Finanzas
+                </a>
+            </li>
+            <li>
+                <a href="reportes.html">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+            </li>
+            <li>
+                <a href="configuracion.html">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-user"></i> Detalle del Cliente</h1>
+            <p class="text-muted">Información del cliente y motores asociados</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+                    <div style="display:flex;gap:16px;align-items:center;">
+                        <div style="width:64px;height:64px;border-radius:50%;background:#3498db;color:white;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;">JP</div>
+                        <div>
+                            <h2 style="margin:0;">Juan Pérez Rodríguez</h2>
+                            <div style="color:var(--text-medium);">ID: CLI-001 Cédula: 1-2345-6789</div>
+                            <div style="color:var(--text-medium);">Correo: juan.perez@email.com Tel: 2222-8888</div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;gap:10px;align-items:center;">
+                        <a href="agregar-motor-cliente.html?cliente=1" class="btn btn-primary">
+                            <i class="fas fa-plus-circle"></i> Agregar Motor
+                        </a>
+                        <a href="clientes.html" class="btn btn-outline">? Volver a clientes</a>
+                    </div>
+                </div>
+
+                <hr style="margin:18px 0;">
+
+                <h3 style="margin-bottom:12px;"><i class="fas fa-motorcycle"></i> Motores del cliente</h3>
+                <table class="data-table" style="width:100%;margin-top:10px;">
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Marca / Modelo</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>Últ. servicio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a class="text-link" href="motores-detalle.html?id=1">SI-2020-4587</a></td>
+                            <td>SIEMENS / 20HP Industrial</td>
+                            <td>Trifásico</td>
+                            <td><span class="badge bg-success">Activo</span></td>
+                            <td>10 Dic 2023</td>
+                            <td>
+                                <div style="display:flex;gap:6px;">
+                                    <a class="btn-sm btn-view" href="motores-detalle.html?id=1" title="Ver"><i class="fas fa-eye"></i></a>
+                                    <a class="btn-sm btn-edit" href="motores-detalle.html?id=1&action=edit" title="Editar"><i class="fas fa-edit"></i></a>
+                                    <a class="btn-sm btn-info" href="ordenes.html?motor=SI-2020-4587" title="Órdenes"><i class="fas fa-clipboard-list"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><a class="text-link" href="motores-detalle.html?id=3">ABB-2019-1234</a></td>
+                            <td>ABB / 10HP Efficiency</td>
+                            <td>Trifásico</td>
+                            <td><span class="badge bg-success">Activo</span></td>
+                            <td>25 Nov 2023</td>
+                            <td>
+                                <div style="display:flex;gap:6px;">
+                                    <a class="btn-sm btn-view" href="motores-detalle.html?id=3" title="Ver"><i class="fas fa-eye"></i></a>
+                                    <a class="btn-sm btn-edit" href="motores-detalle.html?id=3&action=edit" title="Editar"><i class="fas fa-edit"></i></a>
+                                    <a class="btn-sm btn-info" href="ordenes.html?motor=ABB-2019-1234" title="Órdenes"><i class="fas fa-clipboard-list"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="admin-footer">
+        <p>Sistema de Gestión de Taller © 2024 | Detalle Cliente</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

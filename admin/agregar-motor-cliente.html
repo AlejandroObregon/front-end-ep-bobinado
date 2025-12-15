@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agregar Motor - Cliente</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="logo">
+            <i class="fas fa-tools"></i>
+            <span>Taller Manager</span>
+        </div>
+
+        <div class="user-info">
+            <span>Bienvenido, <strong>Admin</strong></span>
+            <a href="notificaciones.html" class="btn-notify" title="Notificaciones" style="color: #ecf0f1; padding:8px 12px; border-radius:6px;">
+                <i class="fas fa-bell"></i>
+            </a>
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul class="nav-menu">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="clientes.html">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
+            <li>
+                <a href="motores.html">
+                    <i class="fas fa-cogs"></i> Motores
+                </a>
+            </li>
+            <li>
+                <a href="ordenes.html">
+                    <i class="fas fa-clipboard-list"></i> Órdenes
+                </a>
+            </li>
+            <li>
+                <a href="inventario.html">
+                    <i class="fas fa-boxes"></i> Inventario
+                </a>
+            </li>
+            <li>
+                <a href="finanzas.html">
+                    <i class="fas fa-dollar-sign"></i> Finanzas
+                </a>
+            </li>
+            <li>
+                <a href="reportes.html">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+            </li>
+            <li>
+                <a href="configuracion.html">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-plus-circle"></i> Agregar Motor al Cliente</h1>
+            <p class="text-muted">Formulario rápido para registrar un nuevo motor asociado al cliente</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <form id="addMotorForm">
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;">
+                        <div class="form-group">
+                            <label for="marca">Marca *</label>
+                            <input id="marca" type="text" required placeholder="Ej: SIEMENS">
+                        </div>
+                        <div class="form-group">
+                            <label for="modelo">Modelo *</label>
+                            <input id="modelo" type="text" required placeholder="Ej: 20HP Industrial">
+                        </div>
+                        <div class="form-group">
+                            <label for="serial">Serial *</label>
+                            <input id="serial" type="text" required placeholder="Ej: SI-2020-4587">
+                        </div>
+                        <div class="form-group">
+                            <label for="potencia">Potencia</label>
+                            <input id="potencia" type="text" placeholder="Ej: 20 HP">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Tipo</label>
+                            <select id="tipo">
+                                <option value="Trifásico">Trifásico</option>
+                                <option value="Monofásico">Monofásico</option>
+                                <option value="DC">Corriente Continua</option>
+                                <option value="Especial">Especial</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:16px;display:flex;gap:10px;">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Motor</button>
+                        <a href="clientes-detalle.html" class="btn btn-outline">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="admin-footer">
+        <p>Sistema de Gestión de Taller © 2024 | Agregar Motor</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.getElementById('addMotorForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const marca = document.getElementById('marca').value.trim();
+            const modelo = document.getElementById('modelo').value.trim();
+            const serial = document.getElementById('serial').value.trim();
+
+            if (!marca || !modelo || !serial) {
+                showNotification('Por favor complete los campos obligatorios', 'error');
+                return;
+            }
+
+            showNotification('Registrando motor...', 'info');
+            setTimeout(() => {
+                showNotification('Motor agregado correctamente', 'success');
+                // Redirect back to client detail (simulated)
+                window.location.href = 'clientes-detalle.html';
+            }, 1200);
+        });
+    </script>
+</body>
+</html>
